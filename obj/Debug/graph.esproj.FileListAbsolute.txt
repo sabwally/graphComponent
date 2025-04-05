@@ -1,0 +1,2 @@
+C:\Users\lapak\source\repos\graph\graph\obj\Debug\graph.esproj.SuggestedBindingRedirects.cache
+C:\Users\lapak\source\repos\graph\graph\obj\Debug\graph.esproj.CoreCompileInputs.cache
