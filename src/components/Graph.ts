@@ -912,12 +912,32 @@ export class Rhombus extends Node implements IRhombus {
         ctx.lineTo(0, this.height / 2);
         ctx.lineTo(- (this.width / 2), 0);
 
+        ctx.closePath();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }
+
         ctx.stroke();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]);
+        }
 
         ctx.fillStyle = 'skyblue';
 
+        ctx.fill();
+        
+
         ctx.closePath();
+        //ctx.lineWidth = 2;
+        //ctx.strokeStyle = 'black';
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
 
     }
 
@@ -937,12 +957,29 @@ export class Rhombus extends Node implements IRhombus {
         ctx.lineTo(0, this.height / 2);
         ctx.lineTo(- (this.width / 2), 0);
 
+        ctx.closePath();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }
+
         ctx.stroke();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]);
+        }
 
         ctx.fillStyle = '#b57281';
 
+        ctx.fill();
+
         ctx.closePath();
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     is_inside(mouseX: number, mouseY: number) {

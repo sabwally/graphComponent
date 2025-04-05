@@ -392,6 +392,82 @@
             }
         }
 
+
+        const check_test = true;
+
+        if (check_test) {
+            //const line: Graph.ILine = { id: "efefef", type: "line", startX: 250, startY: 350, endX: 650, endY: 350, color: "purple", points: [{ x: 300, y: 300 }, { x: 350, y: 350 }, { x: 300, y: 400 }] }
+            //const new_line = new Graph.Line(line, "none", "triangle")
+            //new_line.draw_canvas(ctx);
+
+            const label0: Graph.ILabel = { text: "Nod", color: 'gold', font: "14px Arial", padding: 10 }
+            const circle: Graph.ICircle = { id: "sddddd", type: "circle", x: 350, y: 350, radius: 30, color: "blue", isEdgeDash: true, label_info: label0 }
+            const new_circle = new Graph.Circle(circle);
+            new_circle.draw_canvas(ctx)
+            graph.addNode(new_circle);
+            graph_figures.push(new_circle)
+
+
+            //const label: Graph.ILabel = { text: "Broken", color: 'black', font: "14px Arial", padding: 10, alignment: 'left' }
+            //const line: Graph.ILine = { id: "efefef", type: "line", startX: 650, startY: 120, endX: 650, endY: 50, color: "purple", isEdgeDash: true, label_info: label, points: [{ x: 600, y: 80 }, {x: 600, y: 70}] }
+            //const new_line = new Graph.Line(line, "none", "triangle", new_circle)
+            //new_line.draw_canvas(ctx);
+
+            //const label2: Graph.ILabel = { text: "Red", color: 'red', font: "18px Arial", padding: 10 }
+            //const rectangle_data: Graph.IRectangle = { id: "reeeedddd", type: "rectangle", x: 550, y: 200, width: 100, height: 60, color: "green", label_info: label2 }
+            //const new_rect = new Graph.Rectangle(rectangle_data);
+            //new_rect.draw_canvas(ctx)
+
+            const label3: Graph.ILabel = { text: "Triangle", color: 'white', font: "Bold 18px Arial", padding: 10 }
+            const triangle_data: Graph.ITriangle = { id: "dsdvcdsvs", type: "triangle", x_1: 210, y_1: 210, x_2: 310, y_2: 300, x_3: 110, y_3: 350, isEdgeDash: true, color: "#621a6e", label_info: label3 }
+            const new_tri = new Graph.Triangle(triangle_data);
+            new_tri.draw_canvas(ctx)
+            graph_figures.push(new_tri)
+
+
+            const label4: Graph.ILabel = { text: "Coding...", color: 'black', font: "14px Arial", padding: 10 }
+            const poly_data: Graph.IRegularPolygon = { id: "wqmmmd", "type": "regular polygon", "x": 550, "y": 400, "radius": 80, "number_of_edges": 6, "color": "gold", isEdgeDash: true, "rotation": 0, "info": "text", label_info: label4 }
+            const new_poly = new Graph.RegularPolygon(poly_data)
+            new_poly.draw_canvas(ctx)
+            graph_figures.push(new_poly)
+
+
+            const label5: Graph.ILabel = { text: "Sky is blue", color: 'black', font: "bold italic 14px Arial", padding: 10 }
+            const cloud_descrip: Graph.ICustomDescription = {
+                "typeName": "cloud", "points": [{ "x": 170, "y": 80 }, { "x": 230, "y": 150 }, { "x": 340, "y": 150 },
+                { "x": 390, "y": 100 }, { "x": 340, "y": 50 }, { "x": 250, "y": 50 }, { "x": 170, "y": 80 }], "curve": [{ "isCurved": true, "cp1x": 130, "cp1y": 100, "cp2x": 130, "cp2y": 150 }, { "isCurved": true, "cp1x": 250, "cp1y": 180, "cp2x": 320, "cp2y": 180 },
+                { "isCurved": true, "cp1x": 420, "cp1y": 150, "cp2x": 420, "cp2y": 120 }, { "isCurved": true, "cp1x": 430, "cp1y": 40, "cp2x": 310, "cp2y": 10 }, { "isCurved": true, "cp1x": 320, "cp1y": 5, "cp2x": 250, "cp2y": 20 }, { "isCurved": true, "cp1x": 200, "cp1y": 5, "cp2x": 150, "cp2y": 20 }]
+            }
+            const cloud_data: Graph.ICustomShape = { id: "cloud1111", "type": "cloud", "x_center": -75, "y_center": 365, "color": "white", isEdgeDash: true, label_info: label5 }
+            const new_cloud = new Graph.CustomShape(cloud_data, cloud_descrip)
+            new_cloud.draw_canvas(ctx);
+            graph_figures.push(new_cloud)
+
+
+            const label_new: Graph.ILabel = { text: "Nod", color: 'gold', font: "14px Arial", padding: 10 }
+            const ellipse: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 30, color: "blue", isEdgeDash: true, label_info: label_new }
+            const new_ellipse = new Graph.Ellipse(ellipse);
+            new_ellipse.draw_canvas(ctx)
+            graph_figures.push(new_ellipse)
+
+            const ellipse2: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 0 }
+            const new_ellipse2 = new Graph.Ellipse(ellipse2);
+            new_ellipse2.draw_canvas(ctx)
+            graph_figures.push(new_ellipse2)
+
+            const label_new2: Graph.ILabel = { text: "fix", font: "14px Arial", padding: 10 }
+            const rhomb: Graph.IRhombus = { id: "meow1", type: "rhomb", x: 550, y: 200, width: 100, height: 60, rotation: 0, color: "green", isEdgeDash: true, label_info: label_new2 }
+            const new_rhomb = new Graph.Rhombus(rhomb);
+            new_rhomb.draw_canvas(ctx)
+            graph_figures.push(new_rhomb)
+
+            const rect_data2: Graph.IRectangle = { id: "opal", type: "rectangle", x: 150, y: 100, width: 100, color: "red", height: 60, isEdgeDash: true }
+            const new_rect = new Graph.Rectangle(rect_data2);
+            new_rect.draw_canvas(ctx)
+            graph_figures.push(new_rect)
+        }
+
+
         //ctx.clearRect(0, 0, canvas.width, canvas.height);
         //for (var fig of figures) {
         //    if (fig) {
@@ -467,69 +543,6 @@
             }
 
         });
-
-        const check_test = true;
-
-        if (check_test) {
-            //const line: Graph.ILine = { id: "efefef", type: "line", startX: 250, startY: 350, endX: 650, endY: 350, color: "purple", points: [{ x: 300, y: 300 }, { x: 350, y: 350 }, { x: 300, y: 400 }] }
-            //const new_line = new Graph.Line(line, "none", "triangle")
-            //new_line.draw_canvas(ctx);
-
-            const label0: Graph.ILabel = { text: "Nod", color: 'gold', font: "14px Arial", padding: 10 }
-            const circle: Graph.ICircle = { id: "sddddd", type: "circle", x: 350, y: 350, radius: 30, color: "blue", isEdgeDash: true, label_info: label0 }
-            const new_circle = new Graph.Circle(circle);
-            new_circle.draw_canvas(ctx)
-
-            //const label: Graph.ILabel = { text: "Broken", color: 'black', font: "14px Arial", padding: 10, alignment: 'left' }
-            //const line: Graph.ILine = { id: "efefef", type: "line", startX: 650, startY: 120, endX: 650, endY: 50, color: "purple", isEdgeDash: true, label_info: label, points: [{ x: 600, y: 80 }, {x: 600, y: 70}] }
-            //const new_line = new Graph.Line(line, "none", "triangle", new_circle)
-            //new_line.draw_canvas(ctx);
-
-            //const label2: Graph.ILabel = { text: "Red", color: 'red', font: "18px Arial", padding: 10 }
-            //const rectangle_data: Graph.IRectangle = { id: "reeeedddd", type: "rectangle", x: 550, y: 200, width: 100, height: 60, color: "green", label_info: label2 }
-            //const new_rect = new Graph.Rectangle(rectangle_data);
-            //new_rect.draw_canvas(ctx)
-
-            const label3: Graph.ILabel = { text: "Triangle", color: 'white', font: "Bold 18px Arial", padding: 10 }
-            const triangle_data: Graph.ITriangle = { id: "dsdvcdsvs", type: "triangle", x_1: 210, y_1: 210, x_2: 310, y_2: 300, x_3: 110, y_3: 350, isEdgeDash: true, color: "#621a6e", label_info: label3 }
-            const new_tri = new Graph.Triangle(triangle_data);
-            new_tri.draw_canvas(ctx)
-
-            const label4: Graph.ILabel = { text: "Coding...", color: 'black', font: "14px Arial", padding: 10 }
-            const poly_data: Graph.IRegularPolygon = { id: "wqmmmd", "type": "regular polygon", "x": 550, "y": 400, "radius": 80, "number_of_edges": 6, "color": "gold", isEdgeDash: true, "rotation": 0, "info": "text", label_info: label4 }
-            const new_poly = new Graph.RegularPolygon(poly_data)
-            new_poly.draw_canvas(ctx)
-
-            const label5: Graph.ILabel = { text: "Sky is blue", color: 'black', font: "bold italic 14px Arial", padding: 10 }
-            const cloud_descrip: Graph.ICustomDescription = {
-                "typeName": "cloud", "points": [{ "x": 170, "y": 80 }, { "x": 230, "y": 150 }, { "x": 340, "y": 150 },
-                { "x": 390, "y": 100 }, { "x": 340, "y": 50 }, { "x": 250, "y": 50 }, { "x": 170, "y": 80 }], "curve": [{ "isCurved": true, "cp1x": 130, "cp1y": 100, "cp2x": 130, "cp2y": 150 }, { "isCurved": true, "cp1x": 250, "cp1y": 180, "cp2x": 320, "cp2y": 180 },
-                { "isCurved": true, "cp1x": 420, "cp1y": 150, "cp2x": 420, "cp2y": 120 }, { "isCurved": true, "cp1x": 430, "cp1y": 40, "cp2x": 310, "cp2y": 10 }, { "isCurved": true, "cp1x": 320, "cp1y": 5, "cp2x": 250, "cp2y": 20 }, { "isCurved": true, "cp1x": 200, "cp1y": 5, "cp2x": 150, "cp2y": 20 }]
-            }
-            const cloud_data: Graph.ICustomShape = { id: "cloud1111", "type": "cloud", "x_center": -75, "y_center": 365, "color": "white", isEdgeDash: true, label_info: label5 }
-            const new_cloud = new Graph.CustomShape(cloud_data, cloud_descrip)
-            new_cloud.draw_canvas(ctx);
-
-
-            const label_new: Graph.ILabel = { text: "Nod", color: 'gold', font: "14px Arial", padding: 10 }
-            const ellipse: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 30, color: "blue", isEdgeDash: true, label_info: label_new }
-            const new_ellipse = new Graph.Ellipse(ellipse);
-            new_ellipse.draw_canvas(ctx)
-
-            const ellipse2: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 0 }
-            const new_ellipse2 = new Graph.Ellipse(ellipse2);
-            new_ellipse2.draw_canvas(ctx)
-
-            const label_new2: Graph.ILabel = { text: "fix", font: "14px Arial", padding: 10 }
-            const rhomb: Graph.IRhombus = { id: "meow1", type: "rhomb", x: 550, y: 200, width: 100, height: 60, rotation: 0, color: "green", isEdgeDash: true, label_info: label_new2 }
-            const new_rhomb = new Graph.Rhombus(rhomb);
-            new_rhomb.draw_canvas(ctx)
-
-            const rect_data2: Graph.IRectangle = { id: "opal", type: "rectangle", x: 150, y: 100, width: 100, color: "red", height: 60, isEdgeDash: true }
-            const new_rect = new Graph.Rectangle(rect_data2);
-            new_rect.draw_canvas(ctx)
-        }
-
 
 
         //let objects = json_shapes.map((obj: any) => {
