@@ -409,9 +409,17 @@
 
 
             //const label: Graph.ILabel = { text: "Broken", color: 'black', font: "14px Arial", padding: 10, alignment: 'left' }
-            //const line: Graph.ILine = { id: "efefef", type: "line", startX: 650, startY: 120, endX: 650, endY: 50, color: "purple", isEdgeDash: true, label_info: label, points: [{ x: 600, y: 80 }, {x: 600, y: 70}] }
-            //const new_line = new Graph.Line(line, "none", "triangle", new_circle)
-            //new_line.draw_canvas(ctx);
+            const line: Graph.ILine = { id: "efefef", type: "line", startX: 650, startY: 120, endX: 650, endY: 50, color: "purple", isEdgeDash: true, /*label_info: label,*/ points: [{ x: 600, y: 80 }, {x: 600, y: 70}] }
+            const new_line = new Graph.Line(line, "stick", "triangle", new_circle)
+            new_line.draw_canvas(ctx);
+            graph.addEdge(new_line);
+            graph_figures.push(new_line);
+
+            const line2: Graph.ILine = { id: "fofofo", type: "line", startX: 670, startY: 120, endX: 700, endY: 50, color: "", isEdgeDash: true }
+            const new_line2 = new Graph.Line(line2, "crow", "line")
+            new_line2.draw_canvas(ctx);
+            graph.addEdge(new_line2);
+            graph_figures.push(new_line2);
 
             //const label2: Graph.ILabel = { text: "Red", color: 'red', font: "18px Arial", padding: 10 }
             //const rectangle_data: Graph.IRectangle = { id: "reeeedddd", type: "rectangle", x: 550, y: 200, width: 100, height: 60, color: "green", label_info: label2 }
@@ -426,7 +434,7 @@
 
 
             const label4: Graph.ILabel = { text: "Coding...", color: 'black', font: "14px Arial", padding: 10 }
-            const poly_data: Graph.IRegularPolygon = { id: "wqmmmd", "type": "regular polygon", "x": 550, "y": 400, "radius": 80, "number_of_edges": 6, "color": "gold", isEdgeDash: true, "rotation": 0, "info": "text", label_info: label4 }
+            const poly_data: Graph.IRegularPolygon = { id: "wqmmmd", "type": "regular polygon", "x": 620, "y": 380, "radius": 80, "number_of_edges": 6, "color": "gold", isEdgeDash: true, "rotation": 0, "info": "text", label_info: label4 }
             const new_poly = new Graph.RegularPolygon(poly_data)
             new_poly.draw_canvas(ctx)
             graph_figures.push(new_poly)
@@ -450,10 +458,10 @@
             new_ellipse.draw_canvas(ctx)
             graph_figures.push(new_ellipse)
 
-            const ellipse2: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 0 }
-            const new_ellipse2 = new Graph.Ellipse(ellipse2);
-            new_ellipse2.draw_canvas(ctx)
-            graph_figures.push(new_ellipse2)
+            //const ellipse2: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 30, radius_y: 60, rotation: 0 }
+            //const new_ellipse2 = new Graph.Ellipse(ellipse2);
+            //new_ellipse2.draw_canvas(ctx)
+            //graph_figures.push(new_ellipse2)
 
             const label_new2: Graph.ILabel = { text: "fix", font: "14px Arial", padding: 10 }
             const rhomb: Graph.IRhombus = { id: "meow1", type: "rhomb", x: 550, y: 200, width: 100, height: 60, rotation: 0, color: "green", isEdgeDash: true, label_info: label_new2 }
@@ -465,6 +473,18 @@
             const new_rect = new Graph.Rectangle(rect_data2);
             new_rect.draw_canvas(ctx)
             graph_figures.push(new_rect)
+
+            const label_new_cloud: Graph.ILabel = { text: "404", font: "14px Arial", padding: 10 }
+            const base_cloud_data: Graph.ICloud = { id: "kkkkk", type: "cloud", x_C: 430, y_C: 440, color: "#00bbe6", width: 100, height: 60, isEdgeDash: true, rotation: 0, label_info: label_new_cloud }
+            const new_base_cloud = new Graph.Cloud(base_cloud_data);
+            new_base_cloud.draw_canvas(ctx)
+            graph_figures.push(new_base_cloud)
+
+            const label_new_star: Graph.ILabel = { text: "new", font: "14px Arial", padding: 10 }
+            const base_star_data: Graph.IStar = { id: "loook", type: "star", x_C: 500, y_C: 550, color: "", rad: 30, amount_points: 7, m: 2, isEdgeDash: true, rotation: 0, label_info: label_new_star }
+            const new_star_cloud = new Graph.Star(base_star_data);
+            new_star_cloud.draw_canvas(ctx)
+            graph_figures.push(new_star_cloud)
         }
 
 

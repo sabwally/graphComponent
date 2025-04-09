@@ -78,6 +78,28 @@ export interface IRegularPolygon extends IShape {
     connectors?: Array<{ id: string; x: number; y: number }>;
 }
 
+//rename variables to be readable
+export interface IStar extends IShape {
+    rad: number;
+    amount_points: number; 
+    m: number;
+    x_C: number;
+    y_C: number;
+
+    color?: string
+    connectors?: Array<{ id: string; x: number; y: number }>;
+}
+
+export interface ICloud extends IShape {
+    width: number;
+    height: number;
+    x_C: number;
+    y_C: number;
+
+    color?: string
+    connectors?: Array<{ id: string; x: number; y: number }>;
+}
+
 export interface ICustomDescription {
     typeName: string;
     points: Array<{ x: number; y: number }>;
@@ -884,7 +906,6 @@ export class Rhombus extends Node implements IRhombus {
             ctx.fill();
         }
 
-        ctx.closePath();
         //ctx.lineWidth = 2;
         //ctx.strokeStyle = 'black';
         ctx.restore();
@@ -928,8 +949,6 @@ export class Rhombus extends Node implements IRhombus {
 
         ctx.fill();
         
-
-        ctx.closePath();
         //ctx.lineWidth = 2;
         //ctx.strokeStyle = 'black';
         ctx.restore();
@@ -973,7 +992,6 @@ export class Rhombus extends Node implements IRhombus {
 
         ctx.fill();
 
-        ctx.closePath();
         ctx.restore();
 
         //for now
@@ -1519,6 +1537,529 @@ export class RegularPolygon extends Node implements IRegularPolygon {
     }
 }
 
+export class Cloud extends Node implements ICloud {
+    _id: string;
+    _type: string = 'cloud';
+    _rotation?: number = 0;
+    _x_C: number;
+    _y_C: number;
+    _width: number;
+    _height: number;
+    _color?: string;
+    _info?: string;
+    _wasInside: boolean = false;
+
+    _isEdgeDash: boolean = false;
+
+    _label_info?: ILabel;
+    _label?: Label;
+
+    _connectors?: Array<{ id: string; x: number; y: number }>;
+
+    constructor(cloud: ICloud) {
+        super();
+        this._id = cloud.id
+        //this.type = type
+        if (typeof cloud.rotation !== 'undefined') {
+            this._rotation = cloud.rotation
+        }
+        this._x_C = cloud.x_C
+        this._y_C = cloud.y_C
+        this._width = cloud.width
+        this._height = cloud.height
+        this._color = cloud.color
+        this._info = cloud.info
+
+        if (typeof cloud.isEdgeDash !== 'undefined') {
+            this._isEdgeDash = cloud.isEdgeDash
+        }
+
+        if (typeof cloud.connectors !== 'undefined') {
+            this._connectors = cloud.connectors.slice()
+        }
+
+        if (typeof cloud.label_info !== 'undefined') {
+            this._label_info = cloud.label_info
+
+            if (typeof this._label_info.startX === 'undefined') {
+                this._label_info.startX = this._x_C - this._width / 2
+            }
+
+            if (typeof this._label_info.startY === 'undefined') {
+                this._label_info.startY = this._y_C
+            }
+
+            if (typeof this._label_info.endX === 'undefined') {
+                this._label_info.endX = this._x_C + this._width / 2
+            }
+
+            if (typeof this._label_info.endY === 'undefined') {
+                this._label_info.endY = this._y_C
+            }
+
+            this._label = new Label(this._label_info)
+        }
+    }
+
+    draw_canvas(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+        ctx.save();
+
+        const radian = this.rotation! * Math.PI / 180;
+
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+        
+        const startX_Cloud = - this.width / 2;
+        const startY_Cloud = - this.height / 2;
+
+        const points = [
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.75 * this.height },
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.75 * this.height }
+        ];
+
+        ctx.beginPath();
+
+        ctx.moveTo(points[0].x, points[0].y);
+
+        ctx.bezierCurveTo(
+            points[0].x, startY_Cloud,
+            points[1].x, startY_Cloud,
+            points[1].x, points[1].y
+        );
+
+        ctx.bezierCurveTo(
+            startX_Cloud + this.width, points[1].y,
+            startX_Cloud + this.width, points[2].y,
+            points[2].x, points[2].y
+        );
+
+        ctx.bezierCurveTo(
+            points[2].x, startY_Cloud + this.height,
+            points[3].x, startY_Cloud + this.height,
+            points[3].x, points[3].y
+        );
+
+        ctx.bezierCurveTo(
+            startX_Cloud, points[3].y,
+            startX_Cloud, points[0].y,
+            points[0].x, points[0].y
+        );
+
+        ctx.closePath();
+
+        if (typeof this.color !== 'undefined' && this.color.length > 0) {
+            ctx.fillStyle = this.color!;
+            ctx.fill();
+        }
+        //} else {
+        //    ctx.fillStyle = 'rgba(255, 0, 0, 0)';
+        //}
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]); // Длина штриха и промежутка 
+        }
+        ctx.stroke();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+
+        ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
+
+    }
+
+    draw_hovered(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+        ctx.save();
+        const radian = this.rotation! * Math.PI / 180;
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }        
+        const startX_Cloud = - this.width / 2;
+        const startY_Cloud = - this.height / 2;
+        const points = [
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.75 * this.height },
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.75 * this.height }
+        ];
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        ctx.bezierCurveTo(
+            points[0].x, startY_Cloud,
+            points[1].x, startY_Cloud,
+            points[1].x, points[1].y
+        );
+        ctx.bezierCurveTo(
+            startX_Cloud + this.width, points[1].y,
+            startX_Cloud + this.width, points[2].y,
+            points[2].x, points[2].y
+        );
+        ctx.bezierCurveTo(
+            points[2].x, startY_Cloud + this.height,
+            points[3].x, startY_Cloud + this.height,
+            points[3].x, points[3].y
+        );
+        ctx.bezierCurveTo(
+            startX_Cloud, points[3].y,
+            startX_Cloud, points[0].y,
+            points[0].x, points[0].y
+        );
+        ctx.closePath();
+        ctx.fillStyle = 'skyblue';
+        ctx.fill();
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+        ctx.restore();
+    }
+
+    draw_clicked(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+        ctx.save();
+        const radian = this.rotation! * Math.PI / 180;
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }
+        const startX_Cloud = - this.width / 2;
+        const startY_Cloud = - this.height / 2;
+        const points = [
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.25 * this.height },
+            { x: startX_Cloud + 0.75 * this.width, y: startY_Cloud + 0.75 * this.height },
+            { x: startX_Cloud + 0.25 * this.width, y: startY_Cloud + 0.75 * this.height }
+        ];
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        ctx.bezierCurveTo(
+            points[0].x, startY_Cloud,
+            points[1].x, startY_Cloud,
+            points[1].x, points[1].y
+        );
+        ctx.bezierCurveTo(
+            startX_Cloud + this.width, points[1].y,
+            startX_Cloud + this.width, points[2].y,
+            points[2].x, points[2].y
+        );
+        ctx.bezierCurveTo(
+            points[2].x, startY_Cloud + this.height,
+            points[3].x, startY_Cloud + this.height,
+            points[3].x, points[3].y
+        );
+        ctx.bezierCurveTo(
+            startX_Cloud, points[3].y,
+            startX_Cloud, points[0].y,
+            points[0].x, points[0].y
+        );
+        ctx.closePath();
+        ctx.fillStyle = '#b57281';
+        ctx.fill();
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+        ctx.restore();
+    }
+
+    is_inside(mouseX: number, mouseY: number) {
+        const startX_Cloud = this.x_C - this.width / 2;
+        const startY_Cloud = this.y_C - this.height / 2;
+        return (mouseX >= startX_Cloud && mouseX <= startX_Cloud + this.width &&
+            mouseY >= startY_Cloud && mouseY <= startY_Cloud + this.height);
+    }
+
+    get type() {
+        return this._type;
+    }
+
+    get rotation() {
+        return this._rotation;
+    }
+
+    get x_C() {
+        return this._x_C;
+    }
+
+    get y_C() {
+        return this._y_C;
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    get height() {
+        return this._height;
+    }
+
+    get color() {
+        return this._color;
+    }
+
+    get info() {
+        return this._info;
+    }
+
+    get wasInside() {
+        return this._wasInside;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    get connectors() {
+        return this._connectors;
+    }
+}
+
+export class Star extends Node implements IStar {
+    _id: string;
+    _type: string = 'star';
+    _rotation?: number = 0;
+    _rad: number;
+    _amount_points: number;
+    _m: number;
+    _x_C: number;
+    _y_C: number;
+    _color?: string;
+    _info?: string;
+    _wasInside: boolean = false;
+
+    _isEdgeDash: boolean = false;
+
+    _label_info?: ILabel;
+    _label?: Label;
+
+    _connectors?: Array<{ id: string; x: number; y: number }>;
+
+    constructor(star: IStar) {
+        super();
+        this._id = star.id
+        //this.type = type
+        if (typeof star.rotation !== 'undefined') {
+            this._rotation = star.rotation
+        }
+        this._x_C = star.x_C
+        this._y_C = star.y_C
+        this._amount_points = star.amount_points
+        this._m = star.m
+        this._rad = star.rad
+        this._color = star.color
+        this._info = star.info
+
+        if (typeof star.isEdgeDash !== 'undefined') {
+            this._isEdgeDash = star.isEdgeDash
+        }
+
+        if (typeof star.connectors !== 'undefined') {
+            this._connectors = star.connectors.slice()
+        }
+
+        if (typeof star.label_info !== 'undefined') {
+            this._label_info = star.label_info
+
+            if (typeof this._label_info.startX === 'undefined') {
+                this._label_info.startX = this._x_C - this._rad
+            }
+
+            if (typeof this._label_info.startY === 'undefined') {
+                this._label_info.startY = this._y_C
+            }
+
+            if (typeof this._label_info.endX === 'undefined') {
+                this._label_info.endX = this._x_C + this._rad
+            }
+
+            if (typeof this._label_info.endY === 'undefined') {
+                this._label_info.endY = this._y_C
+            }
+
+            this._label = new Label(this._label_info)
+        }
+    }
+
+    draw_canvas(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+        ctx.save();
+
+        const radian = this.rotation! * Math.PI / 180;
+
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+
+        //ctx.lineWidth = 2;
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]); // Длина штриха и промежутка 
+        }
+
+        //const colorWithAlpha = hexToRgba(star.color, star.colorAlpha);
+        ctx.beginPath();
+        const points = [];
+        ctx.moveTo(0, this.rad);
+        for (let i = 0; i < 2 * this.amount_points; i++) {
+            const angle = Math.PI * i / this.amount_points;
+            const radius = i % 2 === 0 ? this.rad : this.rad * this.m;
+            const x = radius * Math.sin(angle);
+            const y = radius * Math.cos(angle);
+            points.push({ x, y });
+            ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+
+        if (typeof this.color !== 'undefined' && this.color.length > 0) {
+            ctx.fillStyle = this.color!;
+            ctx.fill();
+        }
+
+        ctx.stroke();
+
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+
+        ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
+
+    }
+
+    draw_hovered(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+        ctx.save();
+        const radian = this.rotation! * Math.PI / 180;
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }
+        ctx.beginPath();
+        const points = [];
+        ctx.moveTo(0, this.rad);
+        for (let i = 0; i < 2 * this.amount_points; i++) {
+            const angle = Math.PI * i / this.amount_points;
+            const radius = i % 2 === 0 ? this.rad : this.rad * this.m;
+            const x = radius * Math.sin(angle);
+            const y = radius * Math.cos(angle);
+            points.push({ x, y });
+            ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        
+        ctx.fillStyle = 'skyblue';
+        ctx.fill();
+        
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+        ctx.restore();
+    }
+
+    draw_clicked(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+        ctx.save();
+        const radian = this.rotation! * Math.PI / 180;
+        ctx.translate(this.x_C, this.y_C);
+        ctx.rotate(radian);
+        if (this._isEdgeDash) {
+            ctx.setLineDash([5, 3]);
+        }
+        ctx.beginPath();
+        const points = [];
+        ctx.moveTo(0, this.rad);
+        for (let i = 0; i < 2 * this.amount_points; i++) {
+            const angle = Math.PI * i / this.amount_points;
+            const radius = i % 2 === 0 ? this.rad : this.rad * this.m;
+            const x = radius * Math.sin(angle);
+            const y = radius * Math.cos(angle);
+            points.push({ x, y });
+            ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.fillStyle = '#b57281';
+        ctx.fill();
+        if (this._isEdgeDash) {
+            ctx.setLineDash([]); // Сбрасываем пунктир 
+        }
+        ctx.restore();
+    }
+
+    is_inside(mouseX: number, mouseY: number) {
+        return (
+            mouseX >= this.x_C - this.rad &&
+            mouseX <= this.x_C + this.rad &&
+            mouseY >= this.y_C - this.rad &&
+            mouseY <= this.y_C + this.rad
+        )
+    }
+
+    get type() {
+        return this._type;
+    }
+
+    get rotation() {
+        return this._rotation;
+    }
+
+    get x_C() {
+        return this._x_C;
+    }
+
+    get y_C() {
+        return this._y_C;
+    }
+
+    get rad() {
+        return this._rad;
+    }
+
+    get m() {
+        return this._m;
+    }
+
+    get amount_points() {
+        return this._amount_points;
+    }
+
+    get color() {
+        return this._color;
+    }
+
+    get info() {
+        return this._info;
+    }
+
+    get wasInside() {
+        return this._wasInside;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    get connectors() {
+        return this._connectors;
+    }
+}
+
+
 //rotation
 //scale
 export class CustomShape extends Node implements IShape {
@@ -1851,9 +2392,21 @@ export class Line extends Edge implements ILine {
         //for now
         if (endArrow === 'triangle') {
             this._endArrow = new TriangleArrowHead('end', this, this.color);
-        }
+        } else if (endArrow === 'stick') {
+            this._endArrow = new StickArrowHead('end', this, this.color);
+        } else if (endArrow === 'line') {
+            this._endArrow = new LineArrowHead('end', this, this.color);
+        } else if (endArrow === 'crow') {
+            this._endArrow = new CrowFootArrowHead('end', this, this.color);
+        } 
         if (startArrow === 'triangle') {
             this._startArrow = new TriangleArrowHead('start', this, this.color);
+        } else if (startArrow === 'stick') {
+            this._startArrow = new StickArrowHead('start', this, this.color);
+        } else if (startArrow === 'line') {
+            this._startArrow = new LineArrowHead('start', this, this.color);
+        } else if (startArrow === 'crow') {
+            this._startArrow = new CrowFootArrowHead('start', this, this.color);
         }
 
     }
@@ -1999,6 +2552,15 @@ export class Line extends Edge implements ILine {
 
         return (mouseX * dy - mouseY * dx === ds)
 
+        //const line = obj as Line;
+        //const distStart = Math.sqrt((mouseX - line.startX) ** 2 + (mouseY - line.startY) ** 2);
+        //const distEnd = Math.sqrt((mouseX - line.endX) ** 2 + (mouseY - line.endY) ** 2);
+        //const distToLine = Math.abs((line.endY - line.startY) * mouseX - (line.endX - line.startX) * mouseY +
+        //    line.endX * line.startY - line.endY * line.startX) /
+        //    Math.sqrt((line.endY - line.startY) ** 2 + (line.endX - line.startX) ** 2);
+        //return distStart < 10 || distEnd < 10 || distToLine < 10;
+
+
         //return (mouseX * (this.endY - this.startY) - mouseY * (this.endX - this.startX) === this.startX * this.endY - this.endX * this.startY)
     }
 
@@ -2054,7 +2616,6 @@ export class Line extends Edge implements ILine {
         return this._wasInside;
     }
 }
-
 
 export abstract class ArrowHead {
     
@@ -2123,7 +2684,7 @@ export class TriangleArrowHead extends ArrowHead {
             } else {
                 startX = this._edge._startX
                 startY = this._edge._startY
-            }          
+            }
             endX = this._edge._endX
             endY = this._edge._endY
         } else if (this._position === 'start') {
@@ -2133,13 +2694,13 @@ export class TriangleArrowHead extends ArrowHead {
             } else {
                 startX = this._edge._endX
                 startY = this._edge._endY
-            } 
+            }
             endX = this._edge._startX
             endY = this._edge._startY
         }
 
         // if startX ... not defind
-        
+
         // midle
         //const arrowX = (startX! + endX!) / 2;
         //const arrowY = (startY! + endY!) / 2;
@@ -2156,17 +2717,19 @@ export class TriangleArrowHead extends ArrowHead {
         ctx.lineTo(arrowX - this._length * Math.cos(angle + Math.PI / 6), arrowY - this._length * Math.sin(angle + Math.PI / 6));
         ctx.lineTo(arrowX, arrowY);
         ctx.lineTo(arrowX - this._length * Math.cos(angle - Math.PI / 6), arrowY - this._length * Math.sin(angle - Math.PI / 6));
+        ctx.closePath()
 
         if (typeof this._color !== 'undefined') {
             ctx.strokeStyle = this._color;
-
         }
         ctx.stroke();
+
+        ctx.strokeStyle = 'black';
+
         if (typeof this._color !== 'undefined') {
             ctx.fillStyle = this._color;
+            ctx.fill();
         }
-        ctx.fill();
-
     }
 
     draw_hovered(ctx: CanvasRenderingContext2D) {
@@ -2189,6 +2752,328 @@ export class TriangleArrowHead extends ArrowHead {
         )
     }
 }
+
+export class StickArrowHead extends ArrowHead {
+    _type: string = 'stick';
+
+    _length: number = 10;
+    //abstract _scale?: number;
+    _position: string; //start, end, (custom???), midle(?)
+    // id_edge???
+    _edge: Edge;
+
+    _color?: string;
+    _wasInside: boolean = false;
+
+    constructor(position: string, edge: Edge, color?: string, length?: number) {
+        super();
+        this._position = position;
+        if (typeof length !== 'undefined') {
+            this._length = length;
+        }
+
+        this._edge = edge;
+
+        if (typeof color !== 'undefined') {
+            this._color = color; // edge.color
+        }
+
+    }
+
+    draw_canvas(ctx: CanvasRenderingContext2D) {
+
+        let startX: number, endX: number;
+        let startY: number, endY: number;
+
+        if (this._position === 'end') {
+            if (typeof this._edge._points !== 'undefined') {
+                const last_i = this._edge._points.length - 1
+                startX = this._edge._points[last_i].x
+                startY = this._edge._points[last_i].y
+            } else {
+                startX = this._edge._startX
+                startY = this._edge._startY
+            }
+            endX = this._edge._endX
+            endY = this._edge._endY
+        } else if (this._position === 'start') {
+            if (typeof this._edge._points !== 'undefined') {
+                startX = this._edge._points[0].x
+                startY = this._edge._points[0].y
+            } else {
+                startX = this._edge._endX
+                startY = this._edge._endY
+            }
+            endX = this._edge._startX
+            endY = this._edge._startY
+        }
+
+        // if startX ... not defind
+
+        // midle
+        //const arrowX = (startX! + endX!) / 2;
+        //const arrowY = (startY! + endY!) / 2;
+
+        const arrowX = endX!; // - length / 2 ????
+        const arrowY = endY!;
+
+        const angle = Math.atan2(endY! - startY!, endX! - startX!);
+
+        ctx.beginPath();
+        ctx.moveTo(arrowX, arrowY);
+        ctx.lineTo(arrowX - this._length * Math.cos(angle - Math.PI / 6), arrowY - this._length * Math.sin(angle - Math.PI / 6));
+        ctx.moveTo(arrowX, arrowY);
+        ctx.lineTo(arrowX - this._length * Math.cos(angle + Math.PI / 6), arrowY - this._length * Math.sin(angle + Math.PI / 6));
+        ctx.closePath()
+
+        if (typeof this._color !== 'undefined') {
+            ctx.strokeStyle = this._color;
+
+        }
+        ctx.stroke();
+        ctx.strokeStyle = 'black';
+    }
+
+    draw_hovered(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    draw_clicked(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    //TODO:
+    is_inside(mouseX: number, mouseY: number) {
+        return (false
+            //mouseX >= this.x - this.radius &&
+            //mouseX <= this.x + this.radius &&
+            //mouseY >= this.y - this.radius &&
+            //mouseY <= this.y + this.radius
+        )
+    }
+}
+
+export class LineArrowHead extends ArrowHead {
+    _type: string = 'line';
+
+    _length: number = 6;
+    //abstract _scale?: number;
+    _position: string; //start, end, (custom???), midle(?)
+    // id_edge???
+    _edge: Edge;
+
+    _color?: string;
+    _wasInside: boolean = false;
+
+    constructor(position: string, edge: Edge, color?: string, length?: number) {
+        super();
+        this._position = position;
+        if (typeof length !== 'undefined') {
+            this._length = length;
+        }
+
+        this._edge = edge;
+
+        if (typeof color !== 'undefined') {
+            this._color = color; // edge.color
+        }
+
+    }
+
+    draw_canvas(ctx: CanvasRenderingContext2D) {
+
+        let startX: number, endX: number;
+        let startY: number, endY: number;
+
+        if (this._position === 'end') {
+            if (typeof this._edge._points !== 'undefined') {
+                const last_i = this._edge._points.length - 1
+                startX = this._edge._points[last_i].x
+                startY = this._edge._points[last_i].y
+            } else {
+                startX = this._edge._startX
+                startY = this._edge._startY
+            }
+            endX = this._edge._endX
+            endY = this._edge._endY
+        } else if (this._position === 'start') {
+            if (typeof this._edge._points !== 'undefined') {
+                startX = this._edge._points[0].x
+                startY = this._edge._points[0].y
+            } else {
+                startX = this._edge._endX
+                startY = this._edge._endY
+            }
+            endX = this._edge._startX
+            endY = this._edge._startY
+        }
+
+        // if startX ... not defind
+
+        // midle
+        //const arrowX = (startX! + endX!) / 2;
+        //const arrowY = (startY! + endY!) / 2;
+
+        const arrowX = endX!; // - length / 2 ????
+        const arrowY = endY!;
+
+        const angle = Math.atan2(endY! - startY!, endX! - startX!);
+
+        ctx.beginPath();
+        
+        ctx.moveTo(arrowX - this._length * Math.cos(angle - Math.PI / 6), arrowY - this._length * Math.sin(angle - Math.PI / 6));
+        
+        ctx.lineTo(arrowX - this._length * Math.cos(angle + Math.PI / 6), arrowY - this._length * Math.sin(angle + Math.PI / 6));
+
+        ctx.closePath();
+
+        if (typeof this._color !== 'undefined') {
+            ctx.strokeStyle = this._color;
+        }
+        ctx.stroke();
+
+        ctx.strokeStyle = 'black';
+    }
+
+    draw_hovered(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    draw_clicked(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    //TODO:
+    is_inside(mouseX: number, mouseY: number) {
+        return (false
+            //mouseX >= this.x - this.radius &&
+            //mouseX <= this.x + this.radius &&
+            //mouseY >= this.y - this.radius &&
+            //mouseY <= this.y + this.radius
+        )
+    }
+}
+
+
+export class CrowFootArrowHead extends ArrowHead {
+    _type: string = 'crow'
+
+    _length: number = 8;
+    //abstract _scale?: number;
+    _position: string; //start, end, (custom???), midle(?)
+    // id_edge???
+    _edge: Edge;
+
+    _color?: string;
+    _wasInside: boolean = false;
+
+    constructor(position: string, edge: Edge, color?: string, length?: number) {
+        super();
+        this._position = position;
+        if (typeof length !== 'undefined') {
+            this._length = length;
+        }
+
+        this._edge = edge;
+
+        if (typeof color !== 'undefined') {
+            this._color = color; // edge.color
+        }
+
+    }
+
+    draw_canvas(ctx: CanvasRenderingContext2D) {
+
+        let startX: number, endX: number;
+        let startY: number, endY: number;
+
+        if (this._position === 'end') {
+            if (typeof this._edge._points !== 'undefined') {
+                const last_i = this._edge._points.length - 1
+                startX = this._edge._points[last_i].x
+                startY = this._edge._points[last_i].y
+            } else {
+                startX = this._edge._startX
+                startY = this._edge._startY
+            }
+            endX = this._edge._endX
+            endY = this._edge._endY
+        } else if (this._position === 'start') {
+            if (typeof this._edge._points !== 'undefined') {
+                startX = this._edge._points[0].x
+                startY = this._edge._points[0].y
+            } else {
+                startX = this._edge._endX
+                startY = this._edge._endY
+            }
+            endX = this._edge._startX
+            endY = this._edge._startY
+        }
+
+        // if startX ... not defind
+
+        // midle
+        //const arrowX = (startX! + endX!) / 2;
+        //const arrowY = (startY! + endY!) / 2;
+
+        const arrowX = endX!; // - length / 2 ????
+        const arrowY = endY!;
+
+        const angle = Math.atan2(endY! - startY!, endX! - startX!);
+
+        ctx.save();
+        ctx.translate(arrowX - this._length * Math.cos(angle), arrowY - this._length * Math.sin(angle));
+        ctx.rotate(angle - Math.PI / 2); 
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+
+        // Левый "палец"
+        ctx.lineTo(-this._length * Math.cos(Math.PI / 3), this._length);
+        ctx.moveTo(0, 0);
+
+        // Правый "палец"
+        ctx.lineTo(this._length * Math.cos(Math.PI / 3), this._length);
+        
+        ctx.closePath();
+
+        if (typeof this._color !== 'undefined') {
+            ctx.strokeStyle = this._color;
+
+        }
+        ctx.stroke();
+
+        ctx.strokeStyle = 'black';
+
+        ctx.restore(); // Восстанавливаем состояние контекста
+        
+    }
+
+    draw_hovered(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    draw_clicked(ctx: CanvasRenderingContext2D) {
+        if (!ctx) return;
+
+    }
+
+    //TODO:
+    is_inside(mouseX: number, mouseY: number) {
+        return (false
+            //mouseX >= this.x - this.radius &&
+            //mouseX <= this.x + this.radius &&
+            //mouseY >= this.y - this.radius &&
+            //mouseY <= this.y + this.radius
+        )
+    }
+}
+
 
 // русский
 //implements ILabel
