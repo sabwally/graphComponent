@@ -1,8 +1,10 @@
-<template>
+п»ї<template>
     <h1>Graph Component</h1>
-    <GraphComponent filePath="./text.txt" :xmlData="xmlStrClear" />
+    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrClear" />-->
     <!--<h2>Another one</h2>-->
-    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />-->
+    <GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />
+    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
+
     <!--<div class="canvas-container">
         <div class="canvas-wrapper">
             <h1>Graph Component</h1>
@@ -119,8 +121,9 @@ export default defineComponent({
                 <labelSettings font="14px Arial" color="white"/>
             </node>
 
-            <node id="rect1" type="rectangle" label="" rotation="0" isEdgeDash = "true">
+            <node id="rect1" type="rectangle" label="" rotation="0">
                 <geometry x="200" y="150" width="80" height="40"/>
+                <edgeStyle isEdgeDash = "true"/>
                 <background color="blue"/>
                 <labelSettings font="Bold 17px Arial" color="white"/>
             </node>
@@ -231,6 +234,191 @@ export default defineComponent({
         </graph>
         `;
 
+        const xmlEgor = `
+        <graph>
+            <canvas height="962" width="1912"/>
+
+            <node dialect="base" id="V2Ptl4yMcGnV9rHh" type="rectangle" label="РћС‚СЂРёСЃРѕРІРєР° СЌР»РµРјРµРЅС‚РѕРІ РЅР° Canvas (Canvas API)" rotation="0">
+                <geometry x="716" y="559" width="360" height="50" border="true"/>
+                <background color="#ffffff"/>
+                <style alpha="1" border="true"/>
+                <arealRect x1="716" y1="559" x2="1076" y2="609"/>
+                <lineConnectionStart>
+                    <connection id_con="p3elRmug4s8GmZeP" id_shape="0yx7o2Z6c2QTOk9P"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                    <connection id_con="7g0pSXtKqOyZMT6e" id_shape="nazExDVZJeqLD6A6"/>
+                </lineConnectionEnd>
+                <connectors>
+                    <connector id="9gV2kHfu26AXm51s" x="716" y="584" type="left"/>
+                    <connector id="C0v1BxjTxRCNFocO" x="1076" y="584" type="right"/>
+                    <connector id="p3elRmug4s8GmZeP" x="896" y="559" type="top"/>
+                    <connector id="7g0pSXtKqOyZMT6e" x="896" y="609" type="bottom"/>
+                </connectors>
+            </node> 
+            <node dialect="base" id="23yy2AOZecMk6mUk" type="rectangle" label="Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РІРёР·СѓР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ Shape" rotation="0">
+                <geometry x="670" y="455" width="460" height="50" border="true"/>
+                <background color="#ffffff"/>
+                <style alpha="1" border="true"/>
+                <arealRect x1="670" y1="455" x2="1130" y2="505"/>
+                <lineConnectionStart>
+                  <connection id_con="H2qlfR59pfRuO86E" id_shape="VSgHXXf5rTyA11zp"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="6myADrUKUY4qTKUt" id_shape="0yx7o2Z6c2QTOk9P"/>
+                </lineConnectionEnd>
+                <connectors>
+                  <connector id="yWvITayUlFPv0tE8" x="670" y="480" type="left"/>
+                  <connector id="ahTHLF5Vd3sRSsgq" x="1130" y="480" type="right"/>
+                  <connector id="H2qlfR59pfRuO86E" x="900" y="455" type="top"/>
+                  <connector id="6myADrUKUY4qTKUt" x="900" y="505" type="bottom"/>
+                </connectors>
+              </node>
+              <node dialect="base" id="3dBl5uCY9Aa2lYVJ" type="rectangle" label="Р Р°Р·Р±РѕСЂ(РїР°СЂСЃРёРЅРі) С„Р°Р№Р»Р°, СЃРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ Shape" rotation="0">
+                <geometry x="696" y="349" width="404" height="50" border="true"/>
+                <background color="#ffffff"/>
+                <style alpha="1" border="true"/>
+                <arealRect x1="696" y1="349" x2="1100" y2="399"/>
+                <lineConnectionStart>
+                  <connection id_con="4WUou0gEufhYeURV" id_shape="BjKPCylyBFRQYZNY"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="D1DhLfd8aG7eZUwp" id_shape="VSgHXXf5rTyA11zp"/>
+                </lineConnectionEnd>
+                <connectors>
+                  <connector id="fKSosh6Qn8N3bjTq" x="696" y="374" type="left"/>
+                  <connector id="ma8k7pfCltqOkGI0" x="1100" y="374" type="right"/>
+                  <connector id="4WUou0gEufhYeURV" x="898" y="349" type="top"/>
+                  <connector id="D1DhLfd8aG7eZUwp" x="898" y="399" type="bottom"/>
+                </connectors>
+              </node>
+              <node dialect="base" id="3yTPzJ1yE93IXKGn" type="rectangle" label="Р§С‚РµРЅРёРµ РѕРїРёСЃР°РЅРёСЏ РіСЂР°С„Р°" rotation="0">
+                <geometry x="800" y="249" width="194" height="50" border="true"/>
+                <background color="#ffffff"/>
+                <style alpha="1" border="true"/>
+                <arealRect x1="800" y1="249" x2="994" y2="299"/>
+                <lineConnectionStart>
+                  <connection id_con="yTP3uAqOZSRSqwW6" id_shape="FH08Wtqc51HPxXDm"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="XVSJwgOaCAAzCPfO" id_shape="BjKPCylyBFRQYZNY"/>
+                </lineConnectionEnd>
+                <connectors>
+                  <connector id="KMKEPFMn6sevElkJ" x="800" y="274" type="left"/>
+                  <connector id="Ehn3Nxrky7Y26IDo" x="994" y="274" type="right"/>
+                  <connector id="yTP3uAqOZSRSqwW6" x="897" y="249" type="top"/>
+                  <connector id="XVSJwgOaCAAzCPfO" x="897" y="299" type="bottom"/>
+                </connectors>
+              </node>
+              <node dialect="base" id="Ks5gjYfdhk0XVeIi" type="circle" label="" rotation="0">
+                <geometry x="898" y="689" radius="25"/>
+                <background color="#000000"/>
+                <style alpha="1" border="false"/>
+                <arealRect x1="871" y1="662" x2="925" y2="716"/>
+                <lineConnectionStart>
+                  <connection id_con="oKQlrCgo3zLPimlo" id_shape="nazExDVZJeqLD6A6"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                </lineConnectionEnd>
+                <connectors>
+                  <connector id="UKUToL7f5Hv5JBqy" x="873" y="689" type="left"/>
+                  <connector id="Cp7zgGIBG2TM0OMd" x="923" y="689" type="right"/>
+                  <connector id="oKQlrCgo3zLPimlo" x="898" y="664" type="top"/>
+                  <connector id="j9BXRtSRcEdQVpHF" x="898" y="714" type="bottom"/>
+                </connectors>
+              </node>
+              <node dialect="base" id="EJU8tnSBCC7Jz4If" type="circle" label="" rotation="0">
+                <geometry x="896" y="191" radius="25"/>
+                <background color="#000000"/>
+                <style alpha="1" border="false"/>
+                <arealRect x1="869" y1="164" x2="923" y2="218"/>
+                <lineConnectionStart>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="CqJsR1lei3t5dRpe" id_shape="FH08Wtqc51HPxXDm"/>
+                </lineConnectionEnd>
+                <connectors>
+                  <connector id="0MEWDICyon24aqRU" x="871" y="191" type="left"/>
+                  <connector id="eQmhNsmHbSnmBxIq" x="921" y="191" type="right"/>
+                  <connector id="iA1oVyI7wBvQIqW4" x="896" y="166" type="top"/>
+                  <connector id="CqJsR1lei3t5dRpe" x="896" y="216" type="bottom"/>
+                </connectors>
+              </node>
+              <edge dialect="base" id="BjKPCylyBFRQYZNY" type="line" label="" source="3dBl5uCY9Aa2lYVJ" target="3yTPzJ1yE93IXKGn" endArrow=">" startArrow="none">
+                <lineGeometry startX="898" startY="351" endX="897" endY="301"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="4WUou0gEufhYeURV" id_shape="3dBl5uCY9Aa2lYVJ"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="XVSJwgOaCAAzCPfO" id_shape="3yTPzJ1yE93IXKGn"/>
+                </lineConnectionEnd>
+              </edge>
+              <edge dialect="base" id="VSgHXXf5rTyA11zp" type="line" label="" source="23yy2AOZecMk6mUk" target="3dBl5uCY9Aa2lYVJ" endArrow=">" startArrow="none">
+                <lineGeometry startX="900" startY="457" endX="898" endY="401"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="H2qlfR59pfRuO86E" id_shape="23yy2AOZecMk6mUk"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="D1DhLfd8aG7eZUwp" id_shape="3dBl5uCY9Aa2lYVJ"/>
+                </lineConnectionEnd>
+              </edge>
+              <edge dialect="base" id="nazExDVZJeqLD6A6" type="line" label="" source="Ks5gjYfdhk0XVeIi" target="V2Ptl4yMcGnV9rHh" endArrow=">" startArrow="none">
+                <lineGeometry startX="900" startY="664" endX="898" endY="609"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="oKQlrCgo3zLPimlo" id_shape="Ks5gjYfdhk0XVeIi"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="7g0pSXtKqOyZMT6e" id_shape="V2Ptl4yMcGnV9rHh"/>
+                </lineConnectionEnd>
+              </edge>
+              <edge dialect="base" id="0yx7o2Z6c2QTOk9P" type="line" label="" source="V2Ptl4yMcGnV9rHh" target="23yy2AOZecMk6mUk" endArrow=">" startArrow="none">
+                <lineGeometry startX="898" startY="559" endX="900" endY="507"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="p3elRmug4s8GmZeP" id_shape="V2Ptl4yMcGnV9rHh"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="6myADrUKUY4qTKUt" id_shape="23yy2AOZecMk6mUk"/>
+                </lineConnectionEnd>
+              </edge>
+              <edge dialect="base" id="FH08Wtqc51HPxXDm" type="line" label="" source="3yTPzJ1yE93IXKGn" target="EJU8tnSBCC7Jz4If" endArrow=">" startArrow="none">
+                <lineGeometry startX="897" startY="251" endX="898" endY="216"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="yTP3uAqOZSRSqwW6" id_shape="3yTPzJ1yE93IXKGn"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="CqJsR1lei3t5dRpe" id_shape="EJU8tnSBCC7Jz4If"/>
+                </lineConnectionEnd>
+              </edge>
+        </graph>
+        `;
+
+        const xmlEgor2 = `
+        <graph>
+            <canvas height="962" width="1912"/>
+            <edge dialect="base" id="FH08Wtqc51HPxXDm" type="line" label="" source="3yTPzJ1yE93IXKGn" target="EJU8tnSBCC7Jz4If" endArrow=">" startArrow="none">
+                <lineGeometry startX="897" startY="251" endX="898" endY="216"/>
+                <background color="#000000"/>
+                <edgeStyle edgeColor="#000000" lineWidth="1" alpha="1"/>
+                <lineConnectionStart>
+                  <connection id_con="yTP3uAqOZSRSqwW6" id_shape="3yTPzJ1yE93IXKGn"/>
+                </lineConnectionStart>
+                <lineConnectionEnd>
+                  <connection id_con="CqJsR1lei3t5dRpe" id_shape="EJU8tnSBCC7Jz4If"/>
+                </lineConnectionEnd>
+             </edge>
+        </graph>
+        `;
+
         const xmlStrClear = `
         <graph>
             <canvas height="800" width="800"/>
@@ -239,7 +427,7 @@ export default defineComponent({
         `;
 
         return {
-            xmlString, xmlString2, xmlStr3, xmlStrClear
+            xmlString, xmlString2, xmlStr3, xmlStrClear, xmlEgor, xmlEgor2
         };
     }
 });
@@ -255,15 +443,15 @@ export default defineComponent({
         margin-top: 60px;
     }
     /*.canvas-container {
-        display: flex;*/ /* Используем flexbox для горизонтального расположения */
-        /*justify-content: space-around;*/ /* Распределяем пространство между канвасами */
-        /*align-items: flex-start;*/ /* Выравниваем элементы по верхнему краю */
+        display: flex;*/ /* РСЃРїРѕР»СЊР·СѓРµРј flexbox РґР»СЏ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРіРѕ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ */
+        /*justify-content: space-around;*/ /* Р Р°СЃРїСЂРµРґРµР»СЏРµРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ РјРµР¶РґСѓ РєР°РЅРІР°СЃР°РјРё */
+        /*align-items: flex-start;*/ /* Р’С‹СЂР°РІРЅРёРІР°РµРј СЌР»РµРјРµРЅС‚С‹ РїРѕ РІРµСЂС…РЅРµРјСѓ РєСЂР°СЋ */
     /*}
 
     .canvas-wrapper {
         display: flex;
-        flex-direction: column;*/ /* Вертикальное расположение заголовка и канваса */
-        /*align-items: center;*/ /* Центрируем элементы внутри контейнера */
+        flex-direction: column;*/ /* Р’РµСЂС‚РёРєР°Р»СЊРЅРѕРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ Р·Р°РіРѕР»РѕРІРєР° Рё РєР°РЅРІР°СЃР° */
+        /*align-items: center;*/ /* Р¦РµРЅС‚СЂРёСЂСѓРµРј СЌР»РµРјРµРЅС‚С‹ РІРЅСѓС‚СЂРё РєРѕРЅС‚РµР№РЅРµСЂР° */
     /*}*/
     html {
         background-color: goldenrod;
