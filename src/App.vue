@@ -1,8 +1,8 @@
 ﻿<template>
     <h1>Graph Component</h1>
-    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrClear" />-->
+    <GraphComponent filePath="./text.txt" :xmlData="xmlStrClear" />
     <!--<h2>Another one</h2>-->
-    <GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />
+    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />-->
     <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
 
     <!--<div class="canvas-container">
@@ -236,7 +236,7 @@ export default defineComponent({
 
         const xmlEgor = `
         <graph>
-            <canvas height="962" width="1912"/>
+            <canvas height="962" width="1512"/>
 
             <node dialect="base" id="V2Ptl4yMcGnV9rHh" type="rectangle" label="Отрисовка элементов на Canvas (Canvas API)" rotation="0">
                 <geometry x="716" y="559" width="360" height="50" border="true"/>
@@ -421,7 +421,7 @@ export default defineComponent({
 
         const xmlStrClear = `
         <graph>
-            <canvas height="800" width="800"/>
+            <canvas height="1000" width="1000"/>
 
         </graph>
         `;
