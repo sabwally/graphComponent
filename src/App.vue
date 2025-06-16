@@ -45,6 +45,7 @@
                     <h3>Графовая структура</h3>
                     <p>Ниже будет пример графа, построенного из XML-данных:</p>
                     <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
+                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
                 </div>
             </section>
         </main>
@@ -175,7 +176,7 @@ export default defineComponent({
             </node>
 
             <node id="oval" type="ellipse" label="" rotation="20">
-                <geometry x="100" y="200" radius_x="30" radius_y="60" />
+                <geometry x="250" y="300" radius_x="30" radius_y="60" />
                 <background color="#ffcc00"/>
                 <labelSettings font="18px Arial" color="black"/>
             </node>
@@ -198,12 +199,12 @@ export default defineComponent({
                 <labelSettings font="14px Arial" color="white"/>
             </node>
 
-            <edge id="line3" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="300" startY="80" endX="215" endY="173"/>
+            <edge id="line_cracked" type="line" label="" rotation="0" endArrow="none" startArrow="none">
+                <geometry startX="100" startY="280" endX="15" endY="373"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <internalPoints>
-                    <internalPoint x="250" y="80"/>
+                    <internalPoint x="50" y="280"/>
                 </internalPoints>
             </edge>
 
