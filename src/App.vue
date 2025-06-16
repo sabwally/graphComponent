@@ -1,11 +1,11 @@
-﻿<template>
+﻿<!--<template>
     <h1>Graph Component</h1>
     <GraphComponent filePath="./text.txt" :xmlData="xmlStrClear" />
-    <!--<h2>Another one</h2>-->
-    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />-->
-    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
+    <h2>Another one</h2>
+    <GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />
+    <GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />
 
-    <!--<div class="canvas-container">
+    <div class="canvas-container">
         <div class="canvas-wrapper">
             <h1>Graph Component</h1>
             <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
@@ -14,8 +14,48 @@
             <h2>Another one</h2>
             <GraphComponent filePath="./text.txt" :xmlData="xmlString" />
         </div>
-    </div>-->
-    <!--<GraphComponent filePath="./text.txt" />-->
+    </div>
+    <GraphComponent filePath="./text.txt" />
+</template>-->
+
+<template>
+    <div id="app">
+        <!-- Header / Navigation -->
+        <header class="site-header">
+            <div class="container">
+                <h1>Graph Viewer</h1>
+                <nav>
+                    <router-link to="/">Главная</router-link> |
+                    <router-link to="/about">О проекте</router-link>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="hero">
+                <div class="container">
+                    <h2>Визуализация графов</h2>
+                    <p>Простой компонент для отображения графовых структур.</p>
+                </div>
+            </section>
+
+            <section class="graph-section">
+                <div class="container">
+                    <h3>Графовая структура</h3>
+                    <p>Ниже будет пример графа, построенного из XML-данных:</p>
+                    <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2025 Vue Graph Viewer. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
 </template>
 
 <script lang="ts">
@@ -106,7 +146,7 @@ export default defineComponent({
 
         const xmlString2 = `
         <graph>
-            <canvas height="280" width="300"/>
+            <canvas height="400" width="400"/>
 
             <edge id="line3" type="line" label="Line" rotation="0" endArrow="none" startArrow="triangle">
                 <geometry startX="150" startY="50" endX="250" endY="50"/>
@@ -158,76 +198,83 @@ export default defineComponent({
                 <labelSettings font="14px Arial" color="white"/>
             </node>
 
+            <edge id="line3" type="line" label="" rotation="0" endArrow="none" startArrow="none">
+                <geometry startX="300" startY="80" endX="215" endY="173"/>
+                <background color="black"/>
+                <edgeStyle lineWidth="" />
+                <internalPoints>
+                    <internalPoint x="250" y="80"/>
+                </internalPoints>
+            </edge>
+
         </graph>
         `;
 
-
-
         const xmlStr3 = `
         <graph>
-            <canvas height="500" width="700"/>
+            <canvas height="370" width="700"/>
 
             <edge id="line1" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="180" startY="120" endX="370" endY="200"/>
+                <geometry startX="180" startY="70" endX="370" endY="100"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
             <edge id="line2" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="430" startY="200" endX="570" endY="150"/>
+                <geometry startX="430" startY="100" endX="570" endY="50"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
             <edge id="line3" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="600" startY="180" endX="515" endY="273"/>
+                <geometry startX="600" startY="80" endX="515" endY="173"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
             <edge id="line4" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="470" startY="300" endX="330" endY="400"/>
+                <geometry startX="470" startY="200" endX="330" endY="300"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
             <edge id="line5" type="line" label="" rotation="0" endArrow="none" startArrow="none">
-                <geometry startX="150" startY="150" endX="270" endY="400"/>
+                <geometry startX="150" startY="100" endX="270" endY="300"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
             <node id="circle1" type="circle" label="" rotation="0">
-                <geometry x="150" y="120" radius="30"/>
+                <geometry x="150" y="70" radius="30"/>
                 <background color="yellow"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
 
             <node id="circle2" type="circle" label="" rotation="0">
-                <geometry x="400" y="200" radius="30"/>
+                <geometry x="400" y="100" radius="30"/>
                 <background color="cyan"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
 
             <node id="circle3" type="circle" label="" rotation="0">
-                <geometry x="600" y="150" radius="30"/>
+                <geometry x="600" y="50" radius="30"/>
                 <background color="magenta"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
 
             <node id="circle4" type="circle" label="" rotation="0">
-                <geometry x="500" y="300" radius="30"/>
+                <geometry x="500" y="200" radius="30"/>
                 <background color="lime"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
 
             <node id="circle5" type="circle" label="" rotation="0">
-                <geometry x="300" y="400" radius="30"/>
+                <geometry x="300" y="300" radius="30"/>
                 <background color="orange"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
@@ -255,7 +302,7 @@ export default defineComponent({
                     <connector id="p3elRmug4s8GmZeP" x="896" y="559" type="top"/>
                     <connector id="7g0pSXtKqOyZMT6e" x="896" y="609" type="bottom"/>
                 </connectors>
-            </node> 
+            </node>
             <node dialect="base" id="23yy2AOZecMk6mUk" type="rectangle" label="Формирование визуальных элементов для каждого Shape" rotation="0">
                 <geometry x="670" y="455" width="460" height="50" border="true"/>
                 <background color="#ffffff"/>
@@ -433,7 +480,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<!--<style>
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -444,17 +491,111 @@ export default defineComponent({
     }
     /*.canvas-container {
         display: flex;*/ /* Используем flexbox для горизонтального расположения */
-        /*justify-content: space-around;*/ /* Распределяем пространство между канвасами */
-        /*align-items: flex-start;*/ /* Выравниваем элементы по верхнему краю */
+    /*justify-content: space-around;*/ /* Распределяем пространство между канвасами */
+    /*align-items: flex-start;*/ /* Выравниваем элементы по верхнему краю */
     /*}
 
     .canvas-wrapper {
         display: flex;
         flex-direction: column;*/ /* Вертикальное расположение заголовка и канваса */
-        /*align-items: center;*/ /* Центрируем элементы внутри контейнера */
+    /*align-items: center;*/ /* Центрируем элементы внутри контейнера */
     /*}*/
     html {
         background-color: goldenrod;
     }
+</style>-->
 
+<style>
+    /* Reset & Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    /* Header */
+    .site-header {
+        background-color: #1976d2;
+        color: white;
+        padding: 5px 0;
+    }
+
+        .site-header h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .site-header nav {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .site-header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+            .site-header a:hover {
+                text-decoration: underline;
+            }
+
+    /* Hero Section */
+    .hero {
+        background-color: #e3f2fd;
+        padding: 10px 10px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .hero h2 {
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+        }
+
+    /* Graph Section */
+    .graph-section {
+        background-color: white;
+        padding: 10px 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .graph-section h3 {
+            margin-bottom: 10px;
+        }
+
+    /* Footer */
+    .site-footer {
+        background-color: #1976d2;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero h2 {
+            font-size: 24px;
+        }
+    }
 </style>

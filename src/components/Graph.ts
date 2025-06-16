@@ -121,7 +121,6 @@ export interface ILine extends IShape {
     //label_info?: ILabel
     lineWidth?: number
 
-
     points?: Array<{ x: number; y: number }>; //intermediate 
     is_corners_rounded?: boolean
     max_radius_of_corners?: number
@@ -576,6 +575,11 @@ export class Rectangle extends Node implements IRectangle  {
         ctx.fillRect(this.width / 2 * (-1), this.height / 2 * (-1), this.width, this.height)
 
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     is_inside(mouseX: number, mouseY: number) {
@@ -959,6 +963,11 @@ export class Circle extends Node implements ICircle {
 
         ctx.closePath();
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     is_inside(mouseX: number, mouseY: number) {
@@ -1263,6 +1272,11 @@ export class Ellipse extends Node implements IEllipse {
 
         ctx.closePath();
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     draw_clicked(ctx: CanvasRenderingContext2D) {
@@ -1283,6 +1297,11 @@ export class Ellipse extends Node implements IEllipse {
 
         ctx.closePath();
         ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     is_inside(mouseX: number, mouseY: number) {
@@ -1944,6 +1963,11 @@ export class Triangle extends Node implements ITriangle {
 
 
         //ctx.restore();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
     draw_clicked(ctx: CanvasRenderingContext2D) {
@@ -1970,6 +1994,11 @@ export class Triangle extends Node implements ITriangle {
 
         ctx.fillStyle = '#b57281';
         ctx.fill();
+
+        //for now
+        if (typeof this._label !== 'undefined') {
+            this._label.draw_canvas(ctx)
+        }
     }
 
 
