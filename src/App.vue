@@ -467,6 +467,42 @@ export default defineComponent({
         </graph>
         `;
 
+        const dialectXML = `
+        <dialect name="oriented">
+          <Nodes>
+            <allowedNode type="circle" />
+            <allowedNode type="rectangle" />
+            <allowedNode type="triangle" />
+          </Nodes>
+          <Edges>
+            <allowedEdge type="line" />
+          </Edges>
+          <Arrowheads>
+            <allowedArrowhead type="triangle" /> 
+          </Arrowheads>
+          <graphSettings>
+            <edgeSettings requireAllArrow="start/end/both" requireAllTarget="true" requireAllSource="true" />
+            <edgeStyleSettings lineDash="none" />
+            <labelSettings font="18px Arial" />
+          </graphSettings>
+
+          <allowedConnections>
+            <connection>
+              <nodeType name="rectangle" position="both"/>
+              <nodeType name="triangle" position="both"/>
+            </connection>
+            <connection>
+              <nodeType name="circle" position="both"/>
+              <nodeType name="triangle" position="both"/>
+            </connection>
+            <connection>
+              <edgeType name="line" />
+              <arrowheadType name="triangle" position="any"/>
+            </connection>
+          </allowedConnections>
+        </dialect>
+        `;
+
         const xmlStrClear = `
         <graph>
             <canvas height="1000" width="1000"/>
@@ -475,7 +511,7 @@ export default defineComponent({
         `;
 
         return {
-            xmlString, xmlString2, xmlStr3, xmlStrClear, xmlEgor, xmlEgor2
+            xmlString, xmlString2, xmlStr3, xmlStrClear, xmlEgor, xmlEgor2, dialectXML
         };
     }
 });

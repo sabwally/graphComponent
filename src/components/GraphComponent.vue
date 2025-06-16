@@ -8,13 +8,15 @@
     import { defineComponent, ref } from 'vue';
     //import * as Shapes from './Shape';
     import * as Graph from './Graph';
+    import * as Dialect from './Dialect';
     import * as Tests from './tests';
 
     export default defineComponent({
         name: 'GraphComponent',
         props: {
             filePath: String,
-            xmlData: String
+            xmlData: String,
+            dialectData: String
         },
         data: () => ({
         }),
@@ -98,8 +100,6 @@
             throw new Error('Элемент не является string');
         }
 
-        //console.log(this.xmlData);
-
         const xmlDoc = this.parseXML(this.xmlData);
 
         const canvasElement = xmlDoc.getElementsByTagName("canvas")[0];
@@ -116,6 +116,24 @@
         graph.bindCanvas(canvas, ctx);
 
         const graph_figures: Graph.DataShapes[] = [];
+
+        let dialect: Dialect.Dialect | null = null;
+
+        if (typeof this.dialectData !== 'undefined') {
+            dialect = Dialect.Dialect.fromXML(this.dialectData);
+        }
+
+        const dialectName = xmlDoc.getElementsByTagName("graph")[0].getAttribute("dialect");
+
+        //if (dialectName) {
+        //    dialect = dialectRegistry.get(dialectName) || null;
+        //    if (!dialect) {
+        //        throw new Error(`Диалект "${dialectName}" не найден`);
+        //    }
+        //}
+        if (dialectName && dialect?.name !== dialectName) {
+            throw new Error(`Диалект "${dialectName}" не найден`);
+        }
 
         const nodes = xmlDoc.getElementsByTagName("node");
 
@@ -161,7 +179,7 @@
 
         for (const node of Array.from(nodes)) {
             const id = node.getAttribute("id") || "";
-            const type = node.getAttribute("type") || "";
+            let type = node.getAttribute("type") || "";
             const label = node.getAttribute("label") || "";
             const rotation = parseInt(node.getAttribute("rotation") || "0", 10);
             const geometry = node.getElementsByTagName("geometry")[0];
@@ -193,6 +211,15 @@
             };
             let isEdgeDash: boolean = false
 
+            // Валидация типа узла
+            if (dialectName && dialect) {
+                if (dialect.validateNodeType(type)) {
+                    const tmp_type: string = dialect.nodeTypes.get(type) || "";
+                    type = tmp_type; // мудрено, но лучше так...
+                } else {
+                    throw new Error(`Тип узла "${type}" не разрешен в диалекте "${dialectName}"`);
+                }
+            }
             
             if(geometry){
                 switch(type){
@@ -339,11 +366,11 @@
         
         for (const edge of Array.from(edges)) {
             const id = edge.getAttribute("id") || "";
-            const type = edge.getAttribute("type") || "";
+            let type = edge.getAttribute("type") || "";
+            let startArrow = edge.getAttribute("startArrow") || "none";
+            let endArrow = edge.getAttribute("endArrow") || "none";
             const label = edge.getAttribute("label") || "";
             const rotation = parseFloat(edge.getAttribute("rotation") || "0");
-            const endArrow = edge.getAttribute("endArrow") || "";
-            const startArrow = edge.getAttribute("startArrow") || "";
             const geometry = edge.getElementsByTagName("geometry")[0] || edge.getElementsByTagName("lineGeometry")[0];
             const background = edge.getElementsByTagName("background")[0];
             const edgeStyle = edge.getElementsByTagName("edgeStyle")[0];
@@ -364,6 +391,37 @@
                 font: (labelSettings && labelSettings.getAttribute("font")) || '12px Arial',
                 padding: 10,
             };
+
+            // Валидация типа ребра
+            if (dialectName && dialect) {
+                if (dialect.validateEdgeType(type)) {
+                    const tmp_type: string = dialect.edgeTypes.get(type) || "";
+                    type = tmp_type; // мудрено, но лучше так...
+                } else {
+                    throw new Error(`Тип ребра "${type}" не разрешен в диалекте "${dialectName}"`);
+                }
+            }
+
+            // Валидация стрелок
+            if (dialectName && dialect) {
+                if (startArrow !== "none") {
+                    if (dialect.validateArrowheadType(startArrow)) {
+                        const tmp_type: string = dialect.arrowheadTypes.get(startArrow) || "";
+                        startArrow = tmp_type;
+                    } else {
+                        throw new Error(`Тип стрелки "${startArrow}" не разрешен в диалекте "${dialectName}"`);
+                    }
+                }
+
+                if (endArrow !== "none") {
+                    if (dialect.validateArrowheadType(endArrow)) {
+                        const tmp_type: string = dialect.arrowheadTypes.get(endArrow) || "";
+                        endArrow = tmp_type;
+                    } else {
+                        throw new Error(`Тип стрелки "${endArrow}" не разрешен в диалекте "${dialectName}"`);
+                    }
+                }
+            }
 
             if (geometry) {
                 switch (type) {
