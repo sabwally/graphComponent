@@ -44,7 +44,8 @@
                 <div class="container">
                     <h3>Графовая структура</h3>
                     <p>Ниже будет пример графа, построенного из XML-данных:</p>
-                    <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
+                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />-->
+                    <GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />
                     <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
                 </div>
             </section>
@@ -250,13 +251,13 @@ export default defineComponent({
                 <labelSettings font="14px Arial" color="black"/>
             </edge>
 
-            <node id="circle1" type="circle" label="" rotation="0">
+            <node id="circle1" type="circle" label="" rotation="0"  info="you can click">
                 <geometry x="150" y="70" radius="30"/>
                 <background color="yellow"/>
                 <labelSettings font="14px Arial" color="black"/>
             </node>
 
-            <node id="circle2" type="circle" label="" rotation="0">
+            <node id="circle2" type="circle" label="" rotation="0"  info="don't touch">
                 <geometry x="400" y="100" radius="30"/>
                 <background color="cyan"/>
                 <labelSettings font="14px Arial" color="black"/>
@@ -479,6 +480,7 @@ export default defineComponent({
           </Edges>
           <Arrowheads>
             <allowedArrowhead type="triangle" /> 
+            <allowedArrowhead type="stick" />             
           </Arrowheads>
           <graphSettings>
             <edgeSettings requireAllArrow="start/end/both" requireAllTarget="true" requireAllSource="true" />
@@ -503,6 +505,32 @@ export default defineComponent({
         </dialect>
         `;
 
+        const xmlStrDialectTest = `
+        <graph dialect="oriented">
+            <canvas height="370" width="700"/>
+
+            <edge id="line1" type="line" label="" rotation="0" endArrow="none" startArrow="stick">
+                <geometry startX="180" startY="70" endX="370" endY="100"/>
+                <background color="black"/>
+                <edgeStyle lineWidth="" />
+                <labelSettings font="14px Arial" color="black"/>
+            </edge>       
+
+            <node id="circle1" type="circle" label="" rotation="0">
+                <geometry x="150" y="70" radius="30"/>
+                <background color="yellow"/>
+                <labelSettings font="14px Arial" color="black"/>
+            </node>
+
+            <node id="circle2" type="circle" label="" rotation="0">
+                <geometry x="400" y="100" radius="30"/>
+                <background color="cyan"/>
+                <labelSettings font="14px Arial" color="black"/>
+            </node>
+            
+        </graph>
+        `;
+
         const xmlStrClear = `
         <graph>
             <canvas height="1000" width="1000"/>
@@ -511,7 +539,7 @@ export default defineComponent({
         `;
 
         return {
-            xmlString, xmlString2, xmlStr3, xmlStrClear, xmlEgor, xmlEgor2, dialectXML
+            xmlString, xmlString2, xmlStr3, xmlStrClear, xmlEgor, xmlEgor2, dialectXML, xmlStrDialectTest
         };
     }
 });

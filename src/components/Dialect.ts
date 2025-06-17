@@ -18,7 +18,8 @@ enum BaseArrow {
     TriangleArrowHead = "triangle",
     StickArrowHead = "stick",
     LineArrowHead = "line",
-    CrowFootArrowHead = "crow"
+    CrowFootArrowHead = "crow",
+    None = "none"
 }
 
 function isBaseNode(type: string): type is BaseNode {
@@ -58,10 +59,13 @@ export class Dialect {
         for (let i = 0; i < nodeTypes.length; i++) {
             const typeName = nodeTypes[i].getAttribute("type");
             if (typeName) {
-                const basedOnType = nodeTypes[i].getElementsByTagName("basedOnType")[0].getAttribute("type") || ""
-                if (isBaseNode(basedOnType)) {
-                    dialect.nodeTypes.set(typeName, basedOnType);
-                } else if (basedOnType == "" && isBaseNode(typeName)) {
+                const basedOnType = nodeTypes[i].getElementsByTagName("basedOnType")[0];
+                if (basedOnType) {
+                    const type_based_on = basedOnType.getAttribute("type") || "";
+                    if (isBaseNode(type_based_on)) {
+                        dialect.nodeTypes.set(typeName, type_based_on);
+                    }
+                }else if (isBaseNode(typeName)) {
                     dialect.nodeTypes.set(typeName, typeName);
                 }
             }
@@ -71,26 +75,32 @@ export class Dialect {
         const edgeTypes = xmlDoc.getElementsByTagName("allowedEdge");
         for (let i = 0; i < edgeTypes.length; i++) {
             const typeName = edgeTypes[i].getAttribute("type");
-            if (typeName) {
-                const basedOnType = edgeTypes[i].getElementsByTagName("basedOnType")[0].getAttribute("type") || ""
-                if (isBaseEdge(basedOnType)) {
-                    dialect.edgeTypes.set(typeName, basedOnType);
-                } else if (basedOnType == "" && isBaseEdge(typeName)) {
+            if (typeName) {                
+                const basedOnType = edgeTypes[i].getElementsByTagName("basedOnType")[0];
+                if (basedOnType) {
+                    const type_based_on = basedOnType.getAttribute("type") || "";
+                    if (isBaseEdge(type_based_on)) {
+                        dialect.edgeTypes.set(typeName, type_based_on);
+                    }
+                } else if (isBaseEdge(typeName)) {
                     dialect.edgeTypes.set(typeName, typeName);
                 }
             }
         }
 
-        // Parse allowed arrowhead types
+        // Parse allowed arrowhead types 
         const arrowTypes = xmlDoc.getElementsByTagName("allowedArrowhead");
         for (let i = 0; i < arrowTypes.length; i++) {
             const typeName = arrowTypes[i].getAttribute("type");
 
             if (typeName) {
-                const basedOnType = arrowTypes[i].getElementsByTagName("basedOnType")[0].getAttribute("type") || ""
-                if (isBaseArrow(basedOnType)) {
-                    dialect.arrowheadTypes.set(typeName, basedOnType);
-                } else if (basedOnType == "" && isBaseArrow(typeName)) {
+                const basedOnType = arrowTypes[i].getElementsByTagName("basedOnType")[0];
+                if (basedOnType) {
+                    const type_based_on = basedOnType.getAttribute("type") || "";
+                    if (isBaseArrow(type_based_on)) {
+                        dialect.arrowheadTypes.set(typeName, type_based_on);
+                    }
+                } else if (isBaseArrow(typeName)) {
                     dialect.arrowheadTypes.set(typeName, typeName);
                 }
             }

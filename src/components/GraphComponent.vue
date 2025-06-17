@@ -1,6 +1,7 @@
 ﻿<template>
     <div class="graph-container">
         <canvas class="graph" ref="graphCanvas"></canvas>
+        <div id="tooltip"></div>
     </div>
 </template>
 
@@ -131,7 +132,7 @@
         //        throw new Error(`Диалект "${dialectName}" не найден`);
         //    }
         //}
-        if (dialectName && dialect?.name !== dialectName) {
+        if (dialectName && dialect?.name !== dialectName && dialectName !== "base") {
             throw new Error(`Диалект "${dialectName}" не найден`);
         }
 
@@ -181,6 +182,7 @@
             const id = node.getAttribute("id") || "";
             let type = node.getAttribute("type") || "";
             const label = node.getAttribute("label") || "";
+            const info = node.getAttribute("info") || "";
             const rotation = parseInt(node.getAttribute("rotation") || "0", 10);
             const geometry = node.getElementsByTagName("geometry")[0];
             const background = node.getElementsByTagName("background")[0];
@@ -212,7 +214,7 @@
             let isEdgeDash: boolean = false
 
             // Валидация типа узла
-            if (dialectName && dialect) {
+            if (dialectName && dialect && dialectName !== "base") {
                 if (dialect.validateNodeType(type)) {
                     const tmp_type: string = dialect.nodeTypes.get(type) || "";
                     type = tmp_type; // мудрено, но лучше так...
@@ -232,7 +234,7 @@
                         if (edgeStyle) {
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
-                        const tmp_circle = new Graph.Circle({ id, type, x, y, radius, color, label_info: labelInfo, rotation, isEdgeDash, connectors } as Graph.ICircle);
+                        const tmp_circle = new Graph.Circle({ id, type, x, y, radius, color, label_info: labelInfo, rotation, isEdgeDash, connectors, info } as Graph.ICircle);
                         graph_figures.push(tmp_circle);
                         graph.addNode(tmp_circle);
                         
@@ -259,7 +261,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_rect = new Graph.Rectangle({ id, type, x, y, width, height, color, label_info: labelInfo, rotation, isEdgeDash, connectors } as Graph.IRectangle);
+                        const tmp_rect = new Graph.Rectangle({ id, type, x, y, width, height, color, label_info: labelInfo, rotation, isEdgeDash, connectors, info } as Graph.IRectangle);
                         graph_figures.push(tmp_rect);
                         graph.addNode(tmp_rect);
                         break;
@@ -276,7 +278,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_tri = new Graph.Triangle({ id, rotation, type, x_1: x1, y_1: y1, x_2: x2, y_2: y2, x_3: x3, y_3: y3, color, label_info: labelInfo, isEdgeDash, connectors } as Graph.ITriangle);
+                        const tmp_tri = new Graph.Triangle({ id, rotation, type, x_1: x1, y_1: y1, x_2: x2, y_2: y2, x_3: x3, y_3: y3, color, label_info: labelInfo, isEdgeDash, connectors, info } as Graph.ITriangle);
                         graph_figures.push(tmp_tri);
                         graph.addNode(tmp_tri);
                         break;
@@ -291,7 +293,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_polygon = new Graph.RegularPolygon({ id, rotation, type, x, y, radius, number_of_edges, color, label_info: labelInfo, isEdgeDash, connectors } as Graph.IRegularPolygon);
+                        const tmp_polygon = new Graph.RegularPolygon({ id, rotation, type, x, y, radius, number_of_edges, color, label_info: labelInfo, isEdgeDash, connectors, info } as Graph.IRegularPolygon);
                         graph_figures.push(tmp_polygon);
                         graph.addNode(tmp_polygon);
                         break;
@@ -306,7 +308,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_ellipse = new Graph.Ellipse({ id, rotation, type, x, y, radius_x, radius_y, color, label_info: labelInfo, isEdgeDash, connectors } as Graph.IEllipse);
+                        const tmp_ellipse = new Graph.Ellipse({ id, rotation, type, x, y, radius_x, radius_y, color, label_info: labelInfo, isEdgeDash, connectors, info } as Graph.IEllipse);
                         graph_figures.push(tmp_ellipse);
                         graph.addNode(tmp_ellipse);
                         break;
@@ -321,7 +323,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_rhomb = new Graph.Rhombus({ id, rotation, type, x, y, width, height, color, label_info: labelInfo, isEdgeDash, connectors } as Graph.IRhombus);
+                        const tmp_rhomb = new Graph.Rhombus({ id, rotation, type, x, y, width, height, color, label_info: labelInfo, isEdgeDash, connectors, info } as Graph.IRhombus);
                         graph_figures.push(tmp_rhomb);
                         graph.addNode(tmp_rhomb);
                         break;
@@ -344,7 +346,8 @@
                                 color,
                                 label_info: labelInfo,
                                 isEdgeDash,
-                                connectors
+                                connectors,
+                                info
                             };
 
                             const tmp_custom = new Graph.CustomShape(custom_info, description);
@@ -367,9 +370,10 @@
         for (const edge of Array.from(edges)) {
             const id = edge.getAttribute("id") || "";
             let type = edge.getAttribute("type") || "";
-            let startArrow = edge.getAttribute("startArrow") || "none";
-            let endArrow = edge.getAttribute("endArrow") || "none";
+            let startArrow = edge.getAttribute("startArrow") || "";
+            let endArrow = edge.getAttribute("endArrow") || "";
             const label = edge.getAttribute("label") || "";
+            const info = edge.getAttribute("info") || "";
             const rotation = parseFloat(edge.getAttribute("rotation") || "0");
             const geometry = edge.getElementsByTagName("geometry")[0] || edge.getElementsByTagName("lineGeometry")[0];
             const background = edge.getElementsByTagName("background")[0];
@@ -393,7 +397,7 @@
             };
 
             // Валидация типа ребра
-            if (dialectName && dialect) {
+            if (dialectName && dialect && dialectName !== "base") {
                 if (dialect.validateEdgeType(type)) {
                     const tmp_type: string = dialect.edgeTypes.get(type) || "";
                     type = tmp_type; // мудрено, но лучше так...
@@ -403,24 +407,25 @@
             }
 
             // Валидация стрелок
-            if (dialectName && dialect) {
-                if (startArrow !== "none") {
-                    if (dialect.validateArrowheadType(startArrow)) {
-                        const tmp_type: string = dialect.arrowheadTypes.get(startArrow) || "";
-                        startArrow = tmp_type;
-                    } else {
-                        throw new Error(`Тип стрелки "${startArrow}" не разрешен в диалекте "${dialectName}"`);
-                    }
+            if (dialectName && dialect && dialectName !== "base") {
+                //if (startArrow !== "none") {
+                if (dialect.validateArrowheadType(startArrow)) {
+                    const tmp_type: string = dialect.arrowheadTypes.get(startArrow) || "none";
+                    startArrow = tmp_type;
+                    //console.log(startArrow)
+                } else {
+                    throw new Error(`Тип стрелки "${startArrow}" не разрешен в диалекте "${dialectName}"`);
                 }
+                //}
 
-                if (endArrow !== "none") {
-                    if (dialect.validateArrowheadType(endArrow)) {
-                        const tmp_type: string = dialect.arrowheadTypes.get(endArrow) || "";
-                        endArrow = tmp_type;
-                    } else {
-                        throw new Error(`Тип стрелки "${endArrow}" не разрешен в диалекте "${dialectName}"`);
-                    }
+                //if (endArrow !== "none") {
+                if (dialect.validateArrowheadType(endArrow)) {
+                    const tmp_type: string = dialect.arrowheadTypes.get(endArrow) || "none";
+                    endArrow = tmp_type;
+                } else {
+                    throw new Error(`Тип стрелки "${endArrow}" не разрешен в диалекте "${dialectName}"`);
                 }
+                //}
             }
 
             if (geometry) {
@@ -437,7 +442,7 @@
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
                         }
 
-                        const tmp_line = new Graph.Line({ id, type, startX, startY, endX, endY, color, label_info: labelInfo, rotation, lineWidth, isEdgeDash, points: internalPoints } as Graph.ILine, startArrow, endArrow);
+                        const tmp_line = new Graph.Line({ id, type, startX, startY, endX, endY, color, label_info: labelInfo, rotation, lineWidth, isEdgeDash, points: internalPoints, info } as Graph.ILine, startArrow, endArrow);
                         graph_figures.push(tmp_line);
                         graph.addEdge(tmp_line);
 
@@ -531,6 +536,8 @@
         var clickedFig: Graph.DataShapes = null;
         var pre_clickedFig: Graph.DataShapes = null;
 
+        const tooltip = document.getElementById('tooltip');
+
         canvas.addEventListener("mousemove", (event) => {
             const rect = canvas.getBoundingClientRect();
             const mouseX = event.clientX - rect.left;
@@ -543,9 +550,19 @@
                 let fig = graph_figures[fig_index];
                 if (fig!.is_inside(mouseX, mouseY)) {
                     hoveredFig = fig;
+                    if (tooltip && hoveredFig?._info && hoveredFig?._info !== "") {
+                        tooltip.textContent = hoveredFig?._info; // change to hoveredFig.info
+                        tooltip.style.left = `${event.clientX + 10}px`;
+                        tooltip.style.top = `${event.clientY + 10}px`;
+                        tooltip.style.display = 'block';
+                    }
                     break;
                 }
 
+            }
+
+            if (!hoveredFig && tooltip) {
+                tooltip.style.display = 'none';
             }
 
             if (hoveredFig !== pre_hoveredFig) {
@@ -558,7 +575,7 @@
                         if (clickedFig === sh) {
                             sh.draw_clicked(ctx);
                         } else if (hoveredFig === sh) {
-                            sh.draw_hovered(ctx);
+                            sh.draw_hovered(ctx);                           
                         } else {
                             sh.draw_canvas(ctx);
                         }
@@ -648,5 +665,14 @@
         justify-content: center;
         align-items: center;
         padding: 20px;
+    }
+    #tooltip {
+        position: absolute;
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        display: none;
+        pointer-events: none;
     }
 </style>
