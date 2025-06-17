@@ -370,16 +370,17 @@
         for (const edge of Array.from(edges)) {
             const id = edge.getAttribute("id") || "";
             let type = edge.getAttribute("type") || "";
-            let startArrow = edge.getAttribute("startArrow") || "";
-            let endArrow = edge.getAttribute("endArrow") || "";
             const label = edge.getAttribute("label") || "";
             const info = edge.getAttribute("info") || "";
             const rotation = parseFloat(edge.getAttribute("rotation") || "0");
             const geometry = edge.getElementsByTagName("geometry")[0] || edge.getElementsByTagName("lineGeometry")[0];
             const background = edge.getElementsByTagName("background")[0];
             const edgeStyle = edge.getElementsByTagName("edgeStyle")[0];
+            let startArrow = edge.getAttribute("startArrow") || "none";
+            let endArrow = edge.getAttribute("endArrow") || "none";
+
             let isEdgeDash: boolean = false;
-            const internalPointElements = xmlDoc.getElementsByTagName("internalPoint"); 
+            const internalPointElements = edge.getElementsByTagName("internalPoint"); 
             const internalPoints: Array<{ x: number; y: number }> = [];
 
             for (let i = 0; i < internalPointElements.length; i++) {
@@ -408,24 +409,23 @@
 
             // Валидация стрелок
             if (dialectName && dialect && dialectName !== "base") {
-                //if (startArrow !== "none") {
-                if (dialect.validateArrowheadType(startArrow)) {
-                    const tmp_type: string = dialect.arrowheadTypes.get(startArrow) || "none";
-                    startArrow = tmp_type;
-                    //console.log(startArrow)
-                } else {
-                    throw new Error(`Тип стрелки "${startArrow}" не разрешен в диалекте "${dialectName}"`);
+                if (startArrow !== "none") {
+                    if (dialect.validateArrowheadType(startArrow)) {
+                        const tmp_type: string = dialect.arrowheadTypes.get(startArrow) || "none";
+                        startArrow = tmp_type;
+                    } else {
+                        throw new Error(`Тип стрелки "${startArrow}" не разрешен в диалекте "${dialectName}"`);
+                    }
                 }
-                //}
 
-                //if (endArrow !== "none") {
-                if (dialect.validateArrowheadType(endArrow)) {
-                    const tmp_type: string = dialect.arrowheadTypes.get(endArrow) || "none";
-                    endArrow = tmp_type;
-                } else {
-                    throw new Error(`Тип стрелки "${endArrow}" не разрешен в диалекте "${dialectName}"`);
+                if (endArrow !== "none") {
+                    if (dialect.validateArrowheadType(endArrow)) {
+                        const tmp_type: string = dialect.arrowheadTypes.get(endArrow) || "none";
+                        endArrow = tmp_type;
+                    } else {
+                        throw new Error(`Тип стрелки "${endArrow}" не разрешен в диалекте "${dialectName}"`);
+                    }
                 }
-                //}
             }
 
             if (geometry) {

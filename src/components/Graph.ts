@@ -3607,7 +3607,7 @@ export class TriangleArrowHead extends ArrowHead {
         let startY: number, endY: number;
 
         if (this._position === 'end') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 const last_i = this._edge._points.length - 1
                 startX = this._edge._points[last_i].x
                 startY = this._edge._points[last_i].y
@@ -3618,7 +3618,7 @@ export class TriangleArrowHead extends ArrowHead {
             endX = this._edge._endX
             endY = this._edge._endY
         } else if (this._position === 'start') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 startX = this._edge._points[0].x
                 startY = this._edge._points[0].y
             } else {
@@ -3716,7 +3716,7 @@ export class StickArrowHead extends ArrowHead {
         let startY: number, endY: number;
 
         if (this._position === 'end') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 const last_i = this._edge._points.length - 1
                 startX = this._edge._points[last_i].x
                 startY = this._edge._points[last_i].y
@@ -3727,7 +3727,7 @@ export class StickArrowHead extends ArrowHead {
             endX = this._edge._endX
             endY = this._edge._endY
         } else if (this._position === 'start') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 startX = this._edge._points[0].x
                 startY = this._edge._points[0].y
             } else {
@@ -3818,7 +3818,7 @@ export class LineArrowHead extends ArrowHead {
         let startY: number, endY: number;
 
         if (this._position === 'end') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 const last_i = this._edge._points.length - 1
                 startX = this._edge._points[last_i].x
                 startY = this._edge._points[last_i].y
@@ -3829,7 +3829,7 @@ export class LineArrowHead extends ArrowHead {
             endX = this._edge._endX
             endY = this._edge._endY
         } else if (this._position === 'start') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 startX = this._edge._points[0].x
                 startY = this._edge._points[0].y
             } else {
@@ -3922,7 +3922,7 @@ export class CrowFootArrowHead extends ArrowHead {
         let startY: number, endY: number;
 
         if (this._position === 'end') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 const last_i = this._edge._points.length - 1
                 startX = this._edge._points[last_i].x
                 startY = this._edge._points[last_i].y
@@ -3933,7 +3933,7 @@ export class CrowFootArrowHead extends ArrowHead {
             endX = this._edge._endX
             endY = this._edge._endY
         } else if (this._position === 'start') {
-            if (typeof this._edge._points !== 'undefined') {
+            if (typeof this._edge._points !== 'undefined' && this._edge._points.length > 0) {
                 startX = this._edge._points[0].x
                 startY = this._edge._points[0].y
             } else {

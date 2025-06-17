@@ -44,8 +44,8 @@
                 <div class="container">
                     <h3>Графовая структура</h3>
                     <p>Ниже будет пример графа, построенного из XML-данных:</p>
-                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />-->
-                    <GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />
+                    <GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />
+                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />-->
                     <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
                 </div>
             </section>
@@ -216,7 +216,7 @@ export default defineComponent({
         <graph>
             <canvas height="370" width="700"/>
 
-            <edge id="line1" type="line" label="" rotation="0" endArrow="none" startArrow="none">
+            <edge id="line1" type="line" label="" rotation="0" endArrow="none" startArrow="stick">
                 <geometry startX="180" startY="70" endX="370" endY="100"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
