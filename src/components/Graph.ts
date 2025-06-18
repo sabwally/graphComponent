@@ -4100,11 +4100,38 @@ export class Label {
 
         //strokeText - будет оконтовка
 
-        //const lineHeight = 20 // || font .find **px
+        const lineHeight = 15 // || font .find **px
 
         //this._text.split('\n').forEach((line, index) => ctx.fillText(line, 0, index * lineHeight));
 
-        ctx.fillText(this._text, 0, 0);
+        //const lines = this._text.split('\n');
+
+        //for (let n = 0; n < lines.length; n++) {
+        //    ctx.fillText(lines[n], 0, 0 + n * lineHeight)
+        //}
+
+        const words = this._text.split(' ');
+
+        let line = '';
+
+        let yPosition = 0;
+
+        for (let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width;
+            if (testWidth > dx && n > 0) {
+                ctx.fillText(line, 0, yPosition);
+                line = words[n] + ' ';
+                yPosition += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+
+        ctx.fillText(line, 0, yPosition)
+
+        //ctx.fillText(this._text, 0, 0);
         ctx.restore();
     }
 

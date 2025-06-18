@@ -1,4 +1,4 @@
-import * as img from './images';
+п»їimport * as img from './images';
 import * as Graph from './Graph';
 
 export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_figures: Graph.DataShapes[]) {
@@ -252,7 +252,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
         graph.addNode(node_rect_cat_meme);
         graph_figures.push(node_rect_cat_meme)
 
-        const label_new: Graph.ILabel = { text: "окак", color: 'gold', font: "14px Arial", padding: 10 }
+        const label_new: Graph.ILabel = { text: "РѕРєР°Рє", color: 'gold', font: "14px Arial", padding: 10 }
         const ellipse: Graph.IEllipse = { id: "eu3hei3nnjd", type: "ellipse", x: 400, y: 200, radius_x: 50, radius_y: 70, rotation: 30, color: "blue", isEdgeDash: true, label_info: label_new, image_src: img.image_okak }
         const new_ellipse = new Graph.Ellipse(ellipse);
         //new_ellipse.draw_canvas(ctx)
@@ -308,40 +308,40 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
         graph_figures.push(new_line_round);
     }
 
-    const test_metro1: boolean = false
+    const test_metro1: boolean = true
     const test_metro2: boolean = false
     const test_skillTree: boolean = false
 
     if (test_metro1) {
         const circles: Graph.ICircle[] = [
-            // Красная линия
-            { id: "r1", type: "circle", x: 50, y: 100, radius: 8, color: "#e74c3c", isEdgeDash: false, label_info: { text: "Северный вокзал", color: 'black', font: "12px Arial", padding: 5 } },
-            { id: "r2", type: "circle", x: 150, y: 100, radius: 12, color: "#e74c3c", isEdgeDash: false, label_info: { text: "Центральная", color: 'black', font: "12px Arial", padding: 5 } },
-            { id: "r3", type: "circle", x: 250, y: 100, radius: 8, color: "#e74c3c", isEdgeDash: false, label_info: { text: "Южный парк", color: 'black', font: "12px Arial", padding: 5 } },
+            // РљСЂР°СЃРЅР°СЏ Р»РёРЅРёСЏ
+            { id: "r1", type: "circle", x: 50, y: 100, radius: 8, color: "#e74c3c", isEdgeDash: false, label_info: { text: "РЎРµРІРµСЂРЅС‹Р№ РІРѕРєР·Р°Р» \n fhfhfhfhfhfh", color: 'black', font: "12px Arial", padding: 5 } },
+            { id: "r2", type: "circle", x: 150, y: 100, radius: 12, color: "#e74c3c", isEdgeDash: false, label_info: { text: "Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ", color: 'black', font: "12px Arial", padding: 5 } },
+            { id: "r3", type: "circle", x: 250, y: 100, radius: 8, color: "#e74c3c", isEdgeDash: false, label_info: { text: "Р®Р¶РЅС‹Р№ РїР°СЂРє", color: 'black', font: "12px Arial", padding: 5 } },
 
-            // Синяя линия
-            { id: "b1", type: "circle", x: 50, y: 200, radius: 8, color: "#3498db", isEdgeDash: false, label_info: { text: "Западный район", color: 'black', font: "12px Arial", padding: 5 } },
-            { id: "b2", type: "circle", x: 150, y: 200, radius: 12, color: "#3498db", isEdgeDash: false, label_info: { text: "Университет", color: 'black', font: "12px Arial", padding: 5 } },
+            // РЎРёРЅСЏСЏ Р»РёРЅРёСЏ
+            { id: "b1", type: "circle", x: 50, y: 200, radius: 8, color: "#3498db", isEdgeDash: false, label_info: { text: "Р—Р°РїР°РґРЅС‹Р№ СЂР°Р№РѕРЅ", color: 'black', font: "12px Arial", padding: 5 } },
+            { id: "b2", type: "circle", x: 150, y: 200, radius: 12, color: "#3498db", isEdgeDash: false, label_info: { text: "РЈРЅРёРІРµСЂСЃРёС‚РµС‚", color: 'black', font: "12px Arial", padding: 5 } },
 
-            // Зеленая линия
-            { id: "g1", type: "circle", x: 150, y: 50, radius: 8, color: "#2ecc71", isEdgeDash: false, label_info: { text: "Ботанический сад", color: 'black', font: "12px Arial", padding: 5 } },
-            { id: "g2", type: "circle", x: 150, y: 150, radius: 8, color: "#2ecc71", isEdgeDash: false, label_info: { text: "Стадион", color: 'black', font: "12px Arial", padding: 5 } },
+            // Р—РµР»РµРЅР°СЏ Р»РёРЅРёСЏ
+            { id: "g1", type: "circle", x: 150, y: 50, radius: 8, color: "#2ecc71", isEdgeDash: false, label_info: { text: "Р‘РѕС‚Р°РЅРёС‡РµСЃРєРёР№ СЃР°Рґ", color: 'black', font: "12px Arial", padding: 5 } },
+            { id: "g2", type: "circle", x: 150, y: 150, radius: 8, color: "#2ecc71", isEdgeDash: false, label_info: { text: "РЎС‚Р°РґРёРѕРЅ", color: 'black', font: "12px Arial", padding: 5 } },
         ]
 
         const lines: Graph.ILine[] = [
-            // Красная линия (горизонтальная)
+            // РљСЂР°СЃРЅР°СЏ Р»РёРЅРёСЏ (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ)
             { id: "red1", type: "line", startX: 50, startY: 100, endX: 150, endY: 100, color: "#e74c3c", isEdgeDash: false },
             { id: "red2", type: "line", startX: 150, startY: 100, endX: 250, endY: 100, color: "#e74c3c", isEdgeDash: false },
 
-            // Синяя линия (горизонтальная)
+            // РЎРёРЅСЏСЏ Р»РёРЅРёСЏ (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ)
             { id: "blue1", type: "line", startX: 50, startY: 200, endX: 150, endY: 200, color: "#3498db", isEdgeDash: false },
 
-            // Зеленая линия (вертикальная)
+            // Р—РµР»РµРЅР°СЏ Р»РёРЅРёСЏ (РІРµСЂС‚РёРєР°Р»СЊРЅР°СЏ)
             { id: "green1", type: "line", startX: 150, startY: 50, endX: 150, endY: 100, color: "#2ecc71", isEdgeDash: false },
             { id: "green2", type: "line", startX: 150, startY: 100, endX: 150, endY: 150, color: "#2ecc71", isEdgeDash: false },
             { id: "green3", type: "line", startX: 150, startY: 150, endX: 150, endY: 200, color: "#2ecc71", isEdgeDash: false },
 
-            // Переходы (пунктирные линии)
+            // РџРµСЂРµС…РѕРґС‹ (РїСѓРЅРєС‚РёСЂРЅС‹Рµ Р»РёРЅРёРё)
             {
                 id: "trans1", type: "line", startX: 150, startY: 100, endX: 150, endY: 200, color: "#7f8c8d", isEdgeDash: true, points: [
                     { x: 160, y: 120 },
@@ -368,45 +368,45 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
 
     if (test_metro2) {
         const circles2: Graph.ICircle[] = [
-            // Красная линия (5 станций)
-            { id: "r1", type: "circle", x: 100, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "Западный вокзал", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
-            { id: "r2", type: "circle", x: 250, y: 300, radius: 12, color: "#e74c3c", label_info: { text: "Центральный узел", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "above" } },
-            { id: "r3", type: "circle", x: 400, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "Парк Победы", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
-            { id: "r4", type: "circle", x: 550, y: 300, radius: 8, color: "#e74c3c", label_info: { text: "Восточный терминал", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "r5", type: "circle", x: 700, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "Аэропорт", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
+            // РљСЂР°СЃРЅР°СЏ Р»РёРЅРёСЏ (5 СЃС‚Р°РЅС†РёР№)
+            { id: "r1", type: "circle", x: 100, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "Р—Р°РїР°РґРЅС‹Р№ РІРѕРєР·Р°Р»", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
+            { id: "r2", type: "circle", x: 250, y: 300, radius: 12, color: "#e74c3c", label_info: { text: "Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Р№ СѓР·РµР»", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "above" } },
+            { id: "r3", type: "circle", x: 400, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "РџР°СЂРє РџРѕР±РµРґС‹", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
+            { id: "r4", type: "circle", x: 550, y: 300, radius: 8, color: "#e74c3c", label_info: { text: "Р’РѕСЃС‚РѕС‡РЅС‹Р№ С‚РµСЂРјРёРЅР°Р»", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "r5", type: "circle", x: 700, y: 250, radius: 8, color: "#e74c3c", label_info: { text: "РђСЌСЂРѕРїРѕСЂС‚", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
 
-            // Синяя линия (4 станции)
-            { id: "b1", type: "circle", x: 100, y: 450, radius: 8, color: "#3498db", label_info: { text: "Южный порт", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "b2", type: "circle", x: 300, y: 400, radius: 12, color: "#3498db", label_info: { text: "Деловой квартал", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
-            { id: "b3", type: "circle", x: 500, y: 450, radius: 8, color: "#3498db", label_info: { text: "Промышленная зона", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "b4", type: "circle", x: 700, y: 400, radius: 8, color: "#3498db", label_info: { text: "Технологический парк", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            // РЎРёРЅСЏСЏ Р»РёРЅРёСЏ (4 СЃС‚Р°РЅС†РёРё)
+            { id: "b1", type: "circle", x: 100, y: 450, radius: 8, color: "#3498db", label_info: { text: "Р®Р¶РЅС‹Р№ РїРѕСЂС‚", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "b2", type: "circle", x: 300, y: 400, radius: 12, color: "#3498db", label_info: { text: "Р”РµР»РѕРІРѕР№ РєРІР°СЂС‚Р°Р»", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
+            { id: "b3", type: "circle", x: 500, y: 450, radius: 8, color: "#3498db", label_info: { text: "РџСЂРѕРјС‹С€Р»РµРЅРЅР°СЏ Р·РѕРЅР°", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "b4", type: "circle", x: 700, y: 400, radius: 8, color: "#3498db", label_info: { text: "РўРµС…РЅРѕР»РѕРіРёС‡РµСЃРєРёР№ РїР°СЂРє", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
 
-            // Зеленая линия (5 станций)
-            { id: "g1", type: "circle", x: 150, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "Ботанический сад", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "g2", type: "circle", x: 300, y: 550, radius: 12, color: "#2ecc71", label_info: { text: "Спортивный комплекс", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "above" } },
-            { id: "g3", type: "circle", x: 450, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "Университетский городок", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "g4", type: "circle", x: 600, y: 550, radius: 8, color: "#2ecc71", label_info: { text: "Медицинский центр", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "g5", type: "circle", x: 750, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "Научный институт", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            // Р—РµР»РµРЅР°СЏ Р»РёРЅРёСЏ (5 СЃС‚Р°РЅС†РёР№)
+            { id: "g1", type: "circle", x: 150, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "Р‘РѕС‚Р°РЅРёС‡РµСЃРєРёР№ СЃР°Рґ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "g2", type: "circle", x: 300, y: 550, radius: 12, color: "#2ecc71", label_info: { text: "РЎРїРѕСЂС‚РёРІРЅС‹Р№ РєРѕРјРїР»РµРєСЃ", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "above" } },
+            { id: "g3", type: "circle", x: 450, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "РЈРЅРёРІРµСЂСЃРёС‚РµС‚СЃРєРёР№ РіРѕСЂРѕРґРѕРє", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "g4", type: "circle", x: 600, y: 550, radius: 8, color: "#2ecc71", label_info: { text: "РњРµРґРёС†РёРЅСЃРєРёР№ С†РµРЅС‚СЂ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "g5", type: "circle", x: 750, y: 600, radius: 8, color: "#2ecc71", label_info: { text: "РќР°СѓС‡РЅС‹Р№ РёРЅСЃС‚РёС‚СѓС‚", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
 
-            // Фиолетовая линия (4 станции)
-            { id: "p1", type: "circle", x: 200, y: 350, radius: 8, color: "#9b59b6", label_info: { text: "Исторический музей", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "p2", type: "circle", x: 400, y: 350, radius: 12, color: "#9b59b6", label_info: { text: "Культурный центр", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
-            { id: "p3", type: "circle", x: 600, y: 350, radius: 8, color: "#9b59b6", label_info: { text: "Филармония", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "p4", type: "circle", x: 750, y: 380, radius: 8, color: "#9b59b6", label_info: { text: "Арт-квартал", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
+            // Р¤РёРѕР»РµС‚РѕРІР°СЏ Р»РёРЅРёСЏ (4 СЃС‚Р°РЅС†РёРё)
+            { id: "p1", type: "circle", x: 200, y: 350, radius: 8, color: "#9b59b6", label_info: { text: "РСЃС‚РѕСЂРёС‡РµСЃРєРёР№ РјСѓР·РµР№", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "p2", type: "circle", x: 400, y: 350, radius: 12, color: "#9b59b6", label_info: { text: "РљСѓР»СЊС‚СѓСЂРЅС‹Р№ С†РµРЅС‚СЂ", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
+            { id: "p3", type: "circle", x: 600, y: 350, radius: 8, color: "#9b59b6", label_info: { text: "Р¤РёР»Р°СЂРјРѕРЅРёСЏ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "p4", type: "circle", x: 750, y: 380, radius: 8, color: "#9b59b6", label_info: { text: "РђСЂС‚-РєРІР°СЂС‚Р°Р»", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
 
-            // Оранжевая линия (3 станции)
-            { id: "o1", type: "circle", x: 100, y: 500, radius: 8, color: "#e67e22", label_info: { text: "Торговый район", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "o2", type: "circle", x: 350, y: 480, radius: 12, color: "#e67e22", label_info: { text: "Центральный рынок", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
-            { id: "o3", type: "circle", x: 600, y: 500, radius: 8, color: "#e67e22", label_info: { text: "Выставочный центр", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
+            // РћСЂР°РЅР¶РµРІР°СЏ Р»РёРЅРёСЏ (3 СЃС‚Р°РЅС†РёРё)
+            { id: "o1", type: "circle", x: 100, y: 500, radius: 8, color: "#e67e22", label_info: { text: "РўРѕСЂРіРѕРІС‹Р№ СЂР°Р№РѕРЅ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "o2", type: "circle", x: 350, y: 480, radius: 12, color: "#e67e22", label_info: { text: "Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Р№ СЂС‹РЅРѕРє", color: '#2c3e50', font: "bold 12px Arial", padding: 10, position: "under" } },
+            { id: "o3", type: "circle", x: 600, y: 500, radius: 8, color: "#e67e22", label_info: { text: "Р’С‹СЃС‚Р°РІРѕС‡РЅС‹Р№ С†РµРЅС‚СЂ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } },
 
-            // Коричневая линия (3 станции)
-            { id: "br1", type: "circle", x: 250, y: 450, radius: 8, color: "#795548", label_info: { text: "Парк культуры", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "br2", type: "circle", x: 500, y: 500, radius: 8, color: "#795548", label_info: { text: "Речная набережная", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
-            { id: "br3", type: "circle", x: 700, y: 550, radius: 8, color: "#795548", label_info: { text: "Лесной массив", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } }
+            // РљРѕСЂРёС‡РЅРµРІР°СЏ Р»РёРЅРёСЏ (3 СЃС‚Р°РЅС†РёРё)
+            { id: "br1", type: "circle", x: 250, y: 450, radius: 8, color: "#795548", label_info: { text: "РџР°СЂРє РєСѓР»СЊС‚СѓСЂС‹", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "br2", type: "circle", x: 500, y: 500, radius: 8, color: "#795548", label_info: { text: "Р РµС‡РЅР°СЏ РЅР°Р±РµСЂРµР¶РЅР°СЏ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "under" } },
+            { id: "br3", type: "circle", x: 700, y: 550, radius: 8, color: "#795548", label_info: { text: "Р›РµСЃРЅРѕР№ РјР°СЃСЃРёРІ", color: '#2c3e50', font: "12px Arial", padding: 10, position: "above" } }
         ]
 
         const lines2: Graph.ILine[] = [
-            // Красная линия (с изгибами)
+            // РљСЂР°СЃРЅР°СЏ Р»РёРЅРёСЏ (СЃ РёР·РіРёР±Р°РјРё)
             {
                 id: "red_line",
                 type: "line",
@@ -427,7 +427,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Синяя линия (диагональная)
+            // РЎРёРЅСЏСЏ Р»РёРЅРёСЏ (РґРёР°РіРѕРЅР°Р»СЊРЅР°СЏ)
             {
                 id: "blue_line",
                 type: "line",
@@ -447,7 +447,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Зеленая линия (зигзагообразная)
+            // Р—РµР»РµРЅР°СЏ Р»РёРЅРёСЏ (Р·РёРіР·Р°РіРѕРѕР±СЂР°Р·РЅР°СЏ)
             {
                 id: "green_line",
                 type: "line",
@@ -468,7 +468,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Фиолетовая линия (полукруг)
+            // Р¤РёРѕР»РµС‚РѕРІР°СЏ Р»РёРЅРёСЏ (РїРѕР»СѓРєСЂСѓРі)
             {
                 id: "purple_line",
                 type: "line",
@@ -489,7 +489,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Оранжевая линия (прямая с изгибом)
+            // РћСЂР°РЅР¶РµРІР°СЏ Р»РёРЅРёСЏ (РїСЂСЏРјР°СЏ СЃ РёР·РіРёР±РѕРј)
             {
                 id: "orange_line",
                 type: "line",
@@ -508,7 +508,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Коричневая линия (короткая ветка)
+            // РљРѕСЂРёС‡РЅРµРІР°СЏ Р»РёРЅРёСЏ (РєРѕСЂРѕС‚РєР°СЏ РІРµС‚РєР°)
             {
                 id: "brown_line",
                 type: "line",
@@ -527,7 +527,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 lineWidth: 2
             },
 
-            // Переходы (пунктирные линии)
+            // РџРµСЂРµС…РѕРґС‹ (РїСѓРЅРєС‚РёСЂРЅС‹Рµ Р»РёРЅРёРё)
             {
                 id: "transfer1",
                 type: "line",
@@ -621,63 +621,63 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
 
     if (test_skillTree) {
         const poeTreeNodes: Graph.ICircle[] = [
-            // Центральные ноды (стартовые и ключевые)
-            { id: "start", type: "circle", x: 400, y: 300, radius: 18, color: "#F5D76E", label_info: { text: "Сердце Древа", color: '#2c3e50', font: "bold 16px Arial", padding: 15, position: "above" } },
-            { id: "keystone1", type: "circle", x: 150, y: 100, radius: 22, color: "#C0392B", label_info: { text: "Берсерк", color: 'blue', font: "bold 14px Arial", padding: 20, position: "left" } },
-            { id: "keystone2", type: "circle", x: 650, y: 100, radius: 22, color: "#27AE60", label_info: { text: "Призрачный Беглец", color: 'blue', font: "bold 14px Arial", padding: 20, position: "right" } },
-            { id: "keystone3", type: "circle", x: 400, y: 550, radius: 22, color: "#2980B9", label_info: { text: "Архимаг", color: 'blue', font: "bold 14px Arial", padding: 20, position: "under" } },
+            // Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Рµ РЅРѕРґС‹ (СЃС‚Р°СЂС‚РѕРІС‹Рµ Рё РєР»СЋС‡РµРІС‹Рµ)
+            { id: "start", type: "circle", x: 400, y: 300, radius: 18, color: "#F5D76E", label_info: { text: "РЎРµСЂРґС†Рµ Р”СЂРµРІР°", color: '#2c3e50', font: "bold 16px Arial", padding: 15, position: "above" } },
+            { id: "keystone1", type: "circle", x: 150, y: 100, radius: 22, color: "#C0392B", label_info: { text: "Р‘РµСЂСЃРµСЂРє", color: 'blue', font: "bold 14px Arial", padding: 20, position: "left" } },
+            { id: "keystone2", type: "circle", x: 650, y: 100, radius: 22, color: "#27AE60", label_info: { text: "РџСЂРёР·СЂР°С‡РЅС‹Р№ Р‘РµРіР»РµС†", color: 'blue', font: "bold 14px Arial", padding: 20, position: "right" } },
+            { id: "keystone3", type: "circle", x: 400, y: 550, radius: 22, color: "#2980B9", label_info: { text: "РђСЂС…РёРјР°Рі", color: 'blue', font: "bold 14px Arial", padding: 20, position: "under" } },
 
-            // Верхняя ветка (красная - сила)
+            // Р’РµСЂС…РЅСЏСЏ РІРµС‚РєР° (РєСЂР°СЃРЅР°СЏ - СЃРёР»Р°)
             { id: "str1", type: "circle", x: 250, y: 150, radius: 10, color: "#E74C3C" },
             { id: "str2", type: "circle", x: 200, y: 200, radius: 12, color: "#E74C3C" },
             { id: "str3", type: "circle", x: 150, y: 250, radius: 14, color: "#C0392B" },
             { id: "str4", type: "circle", x: 100, y: 180, radius: 10, color: "#E74C3C" },
             { id: "str5", type: "circle", x: 180, y: 120, radius: 8, color: "#E74C3C" },
 
-            // Правая ветка (зеленая - ловкость)
+            // РџСЂР°РІР°СЏ РІРµС‚РєР° (Р·РµР»РµРЅР°СЏ - Р»РѕРІРєРѕСЃС‚СЊ)
             { id: "dex1", type: "circle", x: 500, y: 150, radius: 10, color: "#2ECC71" },
             { id: "dex2", type: "circle", x: 550, y: 200, radius: 12, color: "#2ECC71" },
             { id: "dex3", type: "circle", x: 600, y: 250, radius: 14, color: "#27AE60" },
             { id: "dex4", type: "circle", x: 650, y: 180, radius: 10, color: "#2ECC71" },
             { id: "dex5", type: "circle", x: 580, y: 120, radius: 8, color: "#2ECC71" },
 
-            // Нижняя ветка (синяя - интеллект)
+            // РќРёР¶РЅСЏСЏ РІРµС‚РєР° (СЃРёРЅСЏСЏ - РёРЅС‚РµР»Р»РµРєС‚)
             { id: "int1", type: "circle", x: 350, y: 400, radius: 10, color: "#3498DB" },
             { id: "int2", type: "circle", x: 400, y: 450, radius: 12, color: "#3498DB" },
             { id: "int3", type: "circle", x: 450, y: 500, radius: 14, color: "#2980B9" },
             { id: "int4", type: "circle", x: 300, y: 480, radius: 10, color: "#3498DB" },
             { id: "int5", type: "circle", x: 500, y: 480, radius: 10, color: "#3498DB" },
 
-            // Гибридные зоны (левая нижняя - сила/ловкость)
+            // Р“РёР±СЂРёРґРЅС‹Рµ Р·РѕРЅС‹ (Р»РµРІР°СЏ РЅРёР¶РЅСЏСЏ - СЃРёР»Р°/Р»РѕРІРєРѕСЃС‚СЊ)
             { id: "hybrid1", type: "circle", x: 250, y: 350, radius: 12, color: "#E67E22" },
             { id: "hybrid2", type: "circle", x: 200, y: 400, radius: 14, color: "#D35400" },
             { id: "hybrid3", type: "circle", x: 150, y: 450, radius: 10, color: "#E67E22" },
             { id: "hybrid4", type: "circle", x: 280, y: 420, radius: 8, color: "#E67E22" },
 
-            // Гибридные зоны (правая нижняя - ловкость/интеллект)
+            // Р“РёР±СЂРёРґРЅС‹Рµ Р·РѕРЅС‹ (РїСЂР°РІР°СЏ РЅРёР¶РЅСЏСЏ - Р»РѕРІРєРѕСЃС‚СЊ/РёРЅС‚РµР»Р»РµРєС‚)
             { id: "hybrid5", type: "circle", x: 550, y: 350, radius: 12, color: "#1ABC9C" },
             { id: "hybrid6", type: "circle", x: 600, y: 400, radius: 14, color: "#16A085" },
             { id: "hybrid7", type: "circle", x: 650, y: 450, radius: 10, color: "#1ABC9C" },
             { id: "hybrid8", type: "circle", x: 520, y: 420, radius: 8, color: "#1ABC9C" },
 
-            // Центральные кластеры
-            { id: "cluster1", type: "circle", x: 300, y: 250, radius: 16, color: "#9B59B6", label_info: { text: "Рунный Узел", color: 'blue', font: "bold 12px Arial", padding: 15, position: "left" } },
-            { id: "cluster2", type: "circle", x: 500, y: 250, radius: 16, color: "#F1C40F", label_info: { text: "Солнечный Круг", color: '#2c3e50', font: "bold 12px Arial", padding: 15, position: "right" } },
+            // Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Рµ РєР»Р°СЃС‚РµСЂС‹
+            { id: "cluster1", type: "circle", x: 300, y: 250, radius: 16, color: "#9B59B6", label_info: { text: "Р СѓРЅРЅС‹Р№ РЈР·РµР»", color: 'blue', font: "bold 12px Arial", padding: 15, position: "left" } },
+            { id: "cluster2", type: "circle", x: 500, y: 250, radius: 16, color: "#F1C40F", label_info: { text: "РЎРѕР»РЅРµС‡РЅС‹Р№ РљСЂСѓРі", color: '#2c3e50', font: "bold 12px Arial", padding: 15, position: "right" } },
             { id: "cluster3", type: "circle", x: 400, y: 200, radius: 14, color: "#34495E" },
             { id: "cluster4", type: "circle", x: 350, y: 150, radius: 10, color: "#95A5A6" },
             { id: "cluster5", type: "circle", x: 450, y: 150, radius: 10, color: "#95A5A6" },
 
-            // Специальные ноды
-            { id: "unique1", type: "circle", x: 100, y: 350, radius: 20, color: "#8E44AD", label_info: { text: "Длань Хаоса", color: 'blue', font: "bold 14px Arial", padding: 18, position: "left" } },
-            { id: "unique2", type: "circle", x: 700, y: 350, radius: 20, color: "#D35400", label_info: { text: "Огненная Крепость", color: 'blue', font: "bold 14px Arial", padding: 18, position: "right" } },
-            { id: "unique3", type: "circle", x: 400, y: 100, radius: 24, color: "#C0392B", label_info: { text: "Небесный Трон", color: 'blue', font: "bold 16px Arial", padding: 22, position: "above" } },
+            // РЎРїРµС†РёР°Р»СЊРЅС‹Рµ РЅРѕРґС‹
+            { id: "unique1", type: "circle", x: 100, y: 350, radius: 20, color: "#8E44AD", label_info: { text: "Р”Р»Р°РЅСЊ РҐР°РѕСЃР°", color: 'blue', font: "bold 14px Arial", padding: 18, position: "left" } },
+            { id: "unique2", type: "circle", x: 700, y: 350, radius: 20, color: "#D35400", label_info: { text: "РћРіРЅРµРЅРЅР°СЏ РљСЂРµРїРѕСЃС‚СЊ", color: 'blue', font: "bold 14px Arial", padding: 18, position: "right" } },
+            { id: "unique3", type: "circle", x: 400, y: 100, radius: 24, color: "#C0392B", label_info: { text: "РќРµР±РµСЃРЅС‹Р№ РўСЂРѕРЅ", color: 'blue', font: "bold 16px Arial", padding: 22, position: "above" } },
             { id: "jewel1", type: "circle", x: 250, y: 280, radius: 8, color: "#F1C40F" }, //, shape: "diamond"
             { id: "jewel2", type: "circle", x: 550, y: 280, radius: 8, color: "#F1C40F" }, //, shape: "diamond"
             { id: "jewel3", type: "circle", x: 400, y: 380, radius: 8, color: "#F1C40F" } //, shape: "diamond"
         ];
 
         const poeTreeConnections: Graph.ILine[] = [
-            // Основные ветви от центра
+            // РћСЃРЅРѕРІРЅС‹Рµ РІРµС‚РІРё РѕС‚ С†РµРЅС‚СЂР°
             {
                 id: "main_str", type: "line", startX: 400, startY: 318, endX: 250, endY: 150, color: "#E74C3C", lineWidth: 5,
                 points: [{ x: 350, y: 200 }]
@@ -691,7 +691,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 380, y: 380 }]
             },
 
-            // Верхняя красная ветка с изгибами
+            // Р’РµСЂС…РЅСЏСЏ РєСЂР°СЃРЅР°СЏ РІРµС‚РєР° СЃ РёР·РіРёР±Р°РјРё
             {
                 id: "str_line1", type: "line", startX: 250, startY: 150, endX: 200, endY: 200, color: "#E74C3C", lineWidth: 4,
                 points: [{ x: 220, y: 170 }]
@@ -707,7 +707,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 140, y: 100 }]
             },
 
-            // Зеленая ветка с обходными путями
+            // Р—РµР»РµРЅР°СЏ РІРµС‚РєР° СЃ РѕР±С…РѕРґРЅС‹РјРё РїСѓС‚СЏРјРё
             { id: "dex_line1", type: "line", startX: 550, startY: 150, endX: 550, endY: 200, color: "#2ECC71", lineWidth: 4 },
             {
                 id: "dex_line2", type: "line", startX: 550, startY: 200, endX: 600, endY: 250, color: "#27AE60", lineWidth: 4,
@@ -723,7 +723,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 620, y: 140 }]
             },
 
-            // Синяя ветка с S-образными изгибами
+            // РЎРёРЅСЏСЏ РІРµС‚РєР° СЃ S-РѕР±СЂР°Р·РЅС‹РјРё РёР·РіРёР±Р°РјРё
             {
                 id: "int_line1", type: "line", startX: 400, startY: 450, endX: 350, endY: 400, color: "#3498DB", lineWidth: 4,
                 points: [{ x: 380, y: 420 }]
@@ -745,7 +745,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 470, y: 490 }]
             },
 
-            // Гибридные соединения с избеганием пересечений
+            // Р“РёР±СЂРёРґРЅС‹Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ РёР·Р±РµРіР°РЅРёРµРј РїРµСЂРµСЃРµС‡РµРЅРёР№
             {
                 id: "hyb_left1", type: "line", startX: 250, startY: 350, endX: 200, endY: 400, color: "#E67E22", lineWidth: 4,
                 points: [{ x: 220, y: 370 }]
@@ -780,7 +780,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 650, y: 280 }, { x: 700, y: 300 }]
             },
 
-            // Кластерные соединения с закруглениями
+            // РљР»Р°СЃС‚РµСЂРЅС‹Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р·Р°РєСЂСѓРіР»РµРЅРёСЏРјРё
             {
                 id: "cluster_conn1", type: "line", startX: 400, startY: 318, endX: 300, endY: 250, color: "#9B59B6", lineWidth: 4,
                 is_corners_rounded: true, max_radius_of_corners: 30, points: [{ x: 350, y: 280 }]
@@ -802,7 +802,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 390, y: 180 }]
             },
 
-            // Вертикальные соединения с обходом
+            // Р’РµСЂС‚РёРєР°Р»СЊРЅС‹Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ РѕР±С…РѕРґРѕРј
             {
                 id: "vert1", type: "line", startX: 400, startY: 200, endX: 400, endY: 100, color: "#C0392B", lineWidth: 6,
                 is_corners_rounded: true, max_radius_of_corners: 40, points: [{ x: 380, y: 150 }]
@@ -816,7 +816,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 points: [{ x: 420, y: 120 }]
             },
 
-            // Специальные соединения для уникальных нод
+            // РЎРїРµС†РёР°Р»СЊРЅС‹Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ РґР»СЏ СѓРЅРёРєР°Р»СЊРЅС‹С… РЅРѕРґ
             {
                 id: "unique_conn1", type: "line", startX: 150, startY: 450, endX: 100, endY: 350, color: "#8E44AD", lineWidth: 5,
                 is_corners_rounded: true, max_radius_of_corners: 25, points: [{ x: 120, y: 400 }]
@@ -826,7 +826,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true, max_radius_of_corners: 25, points: [{ x: 680, y: 400 }]
             },
 
-            // Соединения для алмазных нод (украшения)
+            // РЎРѕРµРґРёРЅРµРЅРёСЏ РґР»СЏ Р°Р»РјР°Р·РЅС‹С… РЅРѕРґ (СѓРєСЂР°С€РµРЅРёСЏ)
             {
                 id: "jewel_conn1", type: "line", startX: 300, startY: 250, endX: 250, endY: 280, color: "#F1C40F", lineWidth: 2,
                 isEdgeDash: true
@@ -840,7 +840,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 isEdgeDash: true
             },
 
-            // Межкластерные соединения
+            // РњРµР¶РєР»Р°СЃС‚РµСЂРЅС‹Рµ СЃРѕРµРґРёРЅРµРЅРёСЏ
             {
                 id: "cross1", type: "line", startX: 300, startY: 250, endX: 250, endY: 350, color: "#9B59B6", lineWidth: 4,
                 points: [{ x: 270, y: 280 }, { x: 250, y: 310 }]
@@ -879,7 +879,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
 
     if (test_uml) {
         const nodes: Graph.DataFigure[] = [
-            // Класс Student
+            // РљР»Р°СЃСЃ Student
             {
                 id: "classStudent",
                 type: "rectangle",
@@ -887,10 +887,10 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 y: 50,
                 width: 150,
                 height: 80,
-                color: "#2c3e50", // Темно-синий
+                color: "#2c3e50", // РўРµРјРЅРѕ-СЃРёРЅРёР№
                 label_info: { text: "Student", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Course
+            // РљР»Р°СЃСЃ Course
             {
                 id: "classCourse",
                 type: "rectangle",
@@ -901,7 +901,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Course", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Instructor
+            // РљР»Р°СЃСЃ Instructor
             {
                 id: "classInstructor",
                 type: "rectangle",
@@ -912,7 +912,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Instructor", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Department
+            // РљР»Р°СЃСЃ Department
             {
                 id: "classDepartment",
                 type: "rectangle",
@@ -923,7 +923,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Department", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс University
+            // РљР»Р°СЃСЃ University
             {
                 id: "classUniversity",
                 type: "rectangle",
@@ -934,7 +934,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "University", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Интерфейс Enrollable
+            // РРЅС‚РµСЂС„РµР№СЃ Enrollable
             {
                 id: "interfaceEnrollable",
                 type: "rhombus",
@@ -942,10 +942,10 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 y: 350,
                 width: 100,
                 height: 60,
-                color: "#34495e", // Синий серый
+                color: "#34495e", // РЎРёРЅРёР№ СЃРµСЂС‹Р№
                 label_info: { text: "Enrollable", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Интерфейс Assessable
+            // РРЅС‚РµСЂС„РµР№СЃ Assessable
             {
                 id: "interfaceAssessable",
                 type: "rhombus",
@@ -956,7 +956,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#34495e",
                 label_info: { text: "Assessable", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Transcript
+            // РљР»Р°СЃСЃ Transcript
             {
                 id: "classTranscript",
                 type: "rectangle",
@@ -967,7 +967,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Transcript", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Grade
+            // РљР»Р°СЃСЃ Grade
             {
                 id: "classGrade",
                 type: "rectangle",
@@ -978,7 +978,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Grade", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Schedule
+            // РљР»Р°СЃСЃ Schedule
             {
                 id: "classSchedule",
                 type: "rectangle",
@@ -989,7 +989,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Schedule", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Assignment
+            // РљР»Р°СЃСЃ Assignment
             {
                 id: "classAssignment",
                 type: "rectangle",
@@ -1000,7 +1000,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Assignment", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Класс Exam
+            // РљР»Р°СЃСЃ Exam
             {
                 id: "classExam",
                 type: "rectangle",
@@ -1011,7 +1011,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 color: "#2c3e50",
                 label_info: { text: "Exam", color: "#ecf0f1", font: "14px Arial", position: "center" }
             },
-            // Эллипс Enrollment
+            // Р­Р»Р»РёРїСЃ Enrollment
             {
                 id: "ellipseEnrollment",
                 type: "ellipse",
@@ -1019,10 +1019,10 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 y: 350,
                 width: 200,
                 height: 100,
-                color: "#95a5a6", // Светло-серый
+                color: "#95a5a6", // РЎРІРµС‚Р»Рѕ-СЃРµСЂС‹Р№
                 label_info: { text: "Enrollment", color: "#2c3e50", font: "14px Arial", position: "center" }
             },
-            // Эллипс Evaluation
+            // Р­Р»Р»РёРїСЃ Evaluation
             {
                 id: "ellipseEvaluation",
                 type: "ellipse",
@@ -1035,9 +1035,9 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
             }
         ];
 
-        // Связи
+        // РЎРІСЏР·Рё
         const lines: Graph.ILine[] = [
-            // Ассоциация между Student и Enrollment
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Student Рё Enrollment
             {
                 id: "associationStudentEnrollment",
                 type: "line",
@@ -1045,13 +1045,13 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 startY: 130,
                 endX: 225,
                 endY: 350,
-                color: "#95a5a6", // Серый
+                color: "#95a5a6", // РЎРµСЂС‹Р№
                 lineWidth: 2,
                 points: [],
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Course и Enrollment
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Course Рё Enrollment
             {
                 id: "associationCourseEnrollment",
                 type: "line",
@@ -1065,7 +1065,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Instructor и Course
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Instructor Рё Course
             {
                 id: "associationInstructorCourse",
                 type: "line",
@@ -1079,7 +1079,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Course и Department
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Course Рё Department
             {
                 id: "associationCourseDepartment",
                 type: "line",
@@ -1093,7 +1093,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Реализация интерфейса Enrollable классом Course
+            // Р РµР°Р»РёР·Р°С†РёСЏ РёРЅС‚РµСЂС„РµР№СЃР° Enrollable РєР»Р°СЃСЃРѕРј Course
             {
                 id: "implementationCourseEnrollable",
                 type: "line",
@@ -1107,7 +1107,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Student и Transcript
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Student Рё Transcript
             {
                 id: "associationStudentTranscript",
                 type: "line",
@@ -1121,7 +1121,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Transcript и Grade
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Transcript Рё Grade
             {
                 id: "associationTranscriptGrade",
                 type: "line",
@@ -1135,7 +1135,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Course и Schedule
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Course Рё Schedule
             {
                 id: "associationCourseSchedule",
                 type: "line",
@@ -1149,7 +1149,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Course и Assignment
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Course Рё Assignment
             {
                 id: "associationCourseAssignment",
                 type: "line",
@@ -1163,7 +1163,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Course и Exam
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Course Рё Exam
             {
                 id: "associationCourseExam",
                 type: "line",
@@ -1177,7 +1177,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Ассоциация между Transcript и Evaluation
+            // РђСЃСЃРѕС†РёР°С†РёСЏ РјРµР¶РґСѓ Transcript Рё Evaluation
             {
                 id: "associationTranscriptEvaluation",
                 type: "line",
@@ -1191,7 +1191,7 @@ export function test(ctx: CanvasRenderingContext2D, graph: Graph.Graph, graph_fi
                 is_corners_rounded: true,
                 max_radius_of_corners: 5
             },
-            // Реализация интерфейса Assessable классом Exam
+            // Р РµР°Р»РёР·Р°С†РёСЏ РёРЅС‚РµСЂС„РµР№СЃР° Assessable РєР»Р°СЃСЃРѕРј Exam
             {
                 id: "implementationExamAssessable",
                 type: "line",

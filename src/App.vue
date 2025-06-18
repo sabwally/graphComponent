@@ -45,8 +45,8 @@
                     <h3>Графовая структура</h3>
                     <p>Ниже будет пример графа, построенного из XML-данных:</p>
                     <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />-->
-                    <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
-                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
+                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlString2" />-->
+                    <GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />
                 </div>
             </section>
         </main>
@@ -287,7 +287,7 @@ export default defineComponent({
         <graph>
             <canvas height="962" width="1512"/>
 
-            <node dialect="base" id="V2Ptl4yMcGnV9rHh" type="rectangle" label="Отрисовка элементов на Canvas (Canvas API)" rotation="0">
+            <node dialect="base" id="V2Ptl4yMcGnV9rHh" type="rectangle" label="Отрисовка элементов \nна Canvas (Canvas API)" rotation="0">
                 <geometry x="716" y="559" width="360" height="50" border="true"/>
                 <background color="#ffffff"/>
                 <style alpha="1" border="true"/>

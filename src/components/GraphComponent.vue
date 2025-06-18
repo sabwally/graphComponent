@@ -526,7 +526,7 @@
         //    }
         //}
 
-        const check_test = false;
+        const check_test = true;
 
         if (check_test) {
             Tests.test(ctx, graph, graph_figures);
