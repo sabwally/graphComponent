@@ -4068,6 +4068,7 @@ export class Label {
         const dy = this._endY - this._startY
 
         let pointX, pointY, pad
+
         if (this._alignment == 'center') {
             pointX = this._startX
             pointY = this._startY
@@ -4100,36 +4101,40 @@ export class Label {
 
         //strokeText - будет оконтовка
 
-        const lineHeight = 15 // || font .find **px
-
-        //this._text.split('\n').forEach((line, index) => ctx.fillText(line, 0, index * lineHeight));
-
-        //const lines = this._text.split('\n');
-
-        //for (let n = 0; n < lines.length; n++) {
-        //    ctx.fillText(lines[n], 0, 0 + n * lineHeight)
-        //}
-
         const words = this._text.split(' ');
-
+        const lines = [];
         let line = '';
-
-        let yPosition = 0;
 
         for (let n = 0; n < words.length; n++) {
             const testLine = line + words[n] + ' ';
             const metrics = ctx.measureText(testLine);
             const testWidth = metrics.width;
             if (testWidth > dx && n > 0) {
-                ctx.fillText(line, 0, yPosition);
+                lines.push(line);
                 line = words[n] + ' ';
-                yPosition += lineHeight;
             } else {
                 line = testLine;
             }
         }
+        if (line.trim()) lines.push(line.trim());
 
-        ctx.fillText(line, 0, yPosition)
+        // Вычисление высоты строки
+        const { actualBoundingBoxAscent, actualBoundingBoxDescent } = ctx.measureText("M");
+        const lineHeight = actualBoundingBoxAscent + actualBoundingBoxDescent;
+        const totalTextHeight = lines.length * lineHeight;
+
+        // Вектор перпендикуляра к линии
+        const perpX = -dy / length;
+        const perpY = dx / length;
+
+        // Смещение вверх на половину высоты текста перпендикулярно линии
+        const offsetY = -totalTextHeight / 2;
+
+        // Отрисовка каждой строки
+        lines.forEach((lineText, i) => {
+            const y = i * lineHeight + offsetY;
+            ctx.fillText(lineText, 0, y);
+        });
 
         //ctx.fillText(this._text, 0, 0);
         ctx.restore();
