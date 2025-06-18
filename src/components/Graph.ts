@@ -4099,6 +4099,11 @@ export class Label {
         //const working_text = this.stringToUnicode(this._text);
 
         //strokeText - будет оконтовка
+
+        //const lineHeight = 20 // || font .find **px
+
+        //this._text.split('\n').forEach((line, index) => ctx.fillText(line, 0, index * lineHeight));
+
         ctx.fillText(this._text, 0, 0);
         ctx.restore();
     }

@@ -380,6 +380,7 @@
             let endArrow = edge.getAttribute("endArrow") || "none";
 
             let isEdgeDash: boolean = false;
+            let is_corners_rounded: boolean = false;
             const internalPointElements = edge.getElementsByTagName("internalPoint"); 
             const internalPoints: Array<{ x: number; y: number }> = [];
 
@@ -440,9 +441,11 @@
                         const lineWidth = parseFloat(edgeStyle.getAttribute("lineWidth") || "1");
                         if (edgeStyle) {
                             isEdgeDash = edgeStyle.getAttribute("isEdgeDash") === 'true' ? true : false;
+                            is_corners_rounded = edgeStyle.getAttribute("isRounded") === 'true' ? true : false;
                         }
+                        const max_radius_of_corners = parseFloat(edgeStyle.getAttribute("maxRadiusOfCorners") || "7");
 
-                        const tmp_line = new Graph.Line({ id, type, startX, startY, endX, endY, color, label_info: labelInfo, rotation, lineWidth, isEdgeDash, points: internalPoints, info } as Graph.ILine, startArrow, endArrow);
+                        const tmp_line = new Graph.Line({ id, type, startX, startY, endX, endY, color, label_info: labelInfo, rotation, lineWidth, isEdgeDash, points: internalPoints, info, is_corners_rounded, max_radius_of_corners } as Graph.ILine, endArrow, startArrow);
                         graph_figures.push(tmp_line);
                         graph.addEdge(tmp_line);
 

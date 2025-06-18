@@ -44,8 +44,8 @@
                 <div class="container">
                     <h3>Графовая структура</h3>
                     <p>Ниже будет пример графа, построенного из XML-данных:</p>
-                    <GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />
-                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStr3" />-->
+                    <!--<GraphComponent filePath="./text.txt" :xmlData="xmlStrDialectTest" :dialectData="dialectXML" />-->
+                    <GraphComponent filePath="./text.txt" :xmlData="xmlString2" />
                     <!--<GraphComponent filePath="./text.txt" :xmlData="xmlEgor" />-->
                 </div>
             </section>
@@ -203,7 +203,7 @@ export default defineComponent({
             <edge id="line_cracked" type="line" label="" rotation="0" endArrow="none" startArrow="none">
                 <geometry startX="100" startY="280" endX="15" endY="373"/>
                 <background color="black"/>
-                <edgeStyle lineWidth="" />
+                <edgeStyle lineWidth="" isRounded= "true" isEdgeDash="false" maxRadiusOfCorners="10"/>
                 <internalPoints>
                     <internalPoint x="50" y="280"/>
                 </internalPoints>
@@ -472,6 +472,9 @@ export default defineComponent({
         <dialect name="oriented">
           <Nodes>
             <allowedNode type="circle" />
+            <allowedNode type="sun">
+                <basedOnType type="circle" />
+            </allowedNode>
             <allowedNode type="rectangle" />
             <allowedNode type="triangle" />
           </Nodes>
@@ -492,12 +495,12 @@ export default defineComponent({
             <connection>
               <nodeType name="rectangle" position="both"/>
               <nodeType name="triangle" position="both"/>
+              <edgeType name="line" />
+              <arrowheadType name="triangle" position="any"/>
             </connection>
             <connection>
               <nodeType name="circle" position="both"/>
               <nodeType name="triangle" position="both"/>
-            </connection>
-            <connection>
               <edgeType name="line" />
               <arrowheadType name="triangle" position="any"/>
             </connection>
@@ -509,14 +512,14 @@ export default defineComponent({
         <graph dialect="oriented">
             <canvas height="370" width="700"/>
 
-            <edge id="line1" type="line" label="" rotation="0" endArrow="none" startArrow="stick">
+            <edge id="line1" type="line" label="привет\n как ты?" rotation="0" endArrow="none" startArrow="stick" >
                 <geometry startX="180" startY="70" endX="370" endY="100"/>
                 <background color="black"/>
                 <edgeStyle lineWidth="" />
                 <labelSettings font="14px Arial" color="black"/>
             </edge>       
 
-            <node id="circle1" type="circle" label="" rotation="0">
+            <node id="circle1" type="sun" label="привет \n как ты?" rotation="0" info="я жииив">
                 <geometry x="150" y="70" radius="30"/>
                 <background color="yellow"/>
                 <labelSettings font="14px Arial" color="black"/>
